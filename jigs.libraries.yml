@@ -1,0 +1,30 @@
+phaser:
+  version: 1.x
+  css:
+    layout:
+      css/phaserlayout.css: {}
+    theme:
+      css/phasertheme.css: {}
+
+client:
+  version: 1.0
+  js:
+    client/dist/index.ccb13aa6.js: { minified: true }
+  css:
+    component:
+      client/dist/index.951cabfd.css: {}
+
+jigs-theme:
+  css:
+    theme:
+      css/styles.css: {}
+
+coreui-styles:
+  css:
+    component:
+      'https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css':
+        type: external
+        minified: true
+        attributes:
+          crossorigin: anonymous
+          integrity: "sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V"

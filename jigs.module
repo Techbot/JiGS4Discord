@@ -1,0 +1,140 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations for the jigs module.
+ */
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\FieldDefinition;
+
+function jigs_page_attachments(array &$page) {
+
+  $computed_settings = [
+  // stuff from mysql and user objects.
+  'foo' => 'bar',
+  'baz' => 'qux',
+];
+
+//$uid = \Drupal::currentUser()->id();
+$node = \Drupal::request()->get('node');
+
+if (isset($node) && $node instanceof NodeInterface) {
+  $title = $node->getTitle();
+  $type = $node->getType();
+    if ($type == 'game' or $type == 'map_grid') {
+      $page['#attached']['library'][] = 'jigs/client';
+  //    $page['#attached']['library'][] = 'jigs/phaser';
+//       if (!\Drupal::currentUser()->hasPermission('access contextual links')) {
+//        return;
+//      }
+    }
+   }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+/* function jigs_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+//  if ($form_id == 'node-map-grid-form' || $form_id == 'node-map-grid-edit-form') {
+    $form['field_ image']['#states'] = [
+      'visible' => [
+        ':input[name="field_image_or_video"]' => ['value' => 'Image'],
+      ],
+    ];
+
+    $form['field_ video']['#states'] = [
+      'visible' => [
+        ':input[name="field_image_or_video"]' => ['value' => 'Video'],
+      ],
+    ];
+ // }
+} */
+
+/**
+ * Implements hook_field_create_definitions().
+ */
+/* function jigs_field_create_definitions_alter(array &$definitions)
+{
+  // Define your fields here by entity type.
+  $definitions['node'] = [
+    'demo_field' => [
+      'name'    => 'demo_field',
+      'label'   => 'This is my field',
+  //    'type'    => 'string',
+      'force'   => FALSE, // No update once field exists.
+      'bundles' => [
+        'map_grid' => [],
+        'article' => [],
+      ],
+    ],
+  ];
+} */
+
+/* function jigs_entity_bundle_field_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle, array $base_field_definitions)
+{
+  if ($entity_type->id() == "node" && $bundle == "concert") {
+    $concert_fields['laatste_uitvoering'] = \Drupal\Core\Field\BaseFieldDefinition::create('datetime')
+    ->setLabel('Laatste uitvoering')
+    ->setRequired(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayOptions('view', array(
+        'label' => 'inline',
+    //    'type' => 'datetime_plain',
+        'weight' => '999',
+      ));
+    $concert_fields['eerste_uitvoering'] = \Drupal\Core\Field\BaseFieldDefinition::create('datetime')
+    ->setLabel('Eerste uitvoering')
+    ->setRequired(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayOptions('view', array(
+        'label' => 'inline',
+    //    'type' => 'datetime_plain',
+        'weight' => '999',
+      ));
+
+    return $concert_fields;
+  }
+} */
+/*
+function jigs_entity_field_storage_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type)
+{
+  if ($entity_type->id() == 'node') {
+    $definitions['my_bundle_field'] = \Drupal\Core\Field\BaseFieldDefinition::create('string')
+    ->setName('my_bundle_field')
+    ->setLabel(t('My new bundle field'))
+      ->setTargetEntityTypeId($entity_type->id());
+    return $definitions;
+  }
+}
+ */
+
+function jigs_theme($existing, $type, $theme, $path) {
+  return [
+    'node__game' => [
+      'template' => 'node--game',
+      'base hook' => 'node',
+      'path' => \Drupal::service('extension.list.module')->getPath('jigs') . '/templates',
+    ],
+    'profile__player__player' => [
+      'template' => 'profile--player--player',
+      'base hook' => 'profile',
+      'path' => \Drupal::service('extension.list.module')->getPath('jigs') . '/templates',
+    ],
+
+  ];
+}
+
+function jigs_preprocess_page(&$variables) {
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    // $variables['#attached']['library'][] =  'jigs/coreui-styles';
+    $variables['#attached']['library'][] =  'jigs/jigs-theme';
+  }
+}

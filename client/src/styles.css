@@ -1,0 +1,413 @@
+:root {
+  --emc-white: #FFFFFF;
+  --emc-white-off: #F5EFED;
+  --emc-white-grey: #E8F1F2;
+  --emc-grey-bg: #E6E6EA;
+  --emc-grey-light: #E2E2E2;
+  --emc-grey-mid: #605F5E;
+  --emc-grey-dark: #363F3F;
+  --emc-grey-dark-alt: #33312E;
+  --emc-black: #0A0908;
+  --emc-black-rich: #04151F;
+  --emc-dark: #230007;
+  --emc-teal-light: #00F2F2;
+  --emc-teal-light-alt: #00B9AE;
+  --emc-teal: #009999;
+  --emc-teal-alt: #19535F;
+  --emc-teal-dark: #0B3C49;
+  --emc-teal-dark-alt: #022B3A;
+  --emc-teal-dark-rich: #042A2B;
+  --emc-blue: #0A2463;
+  --emc-green: #00CC66;
+  --emc-yellow: #FFC43D;
+  --emc-lime: #CEFF1A;
+  --emc-red: #D00A01;
+  --emc-pink: #EF476F;
+  --emc-orange: #FB5012;
+  --emc-purple: #3C1642;
+
+  --cui-body-color: #eee;
+  --cui-body-bg: #000000;
+  --cui-nav-tabs-link-active-color: #fff;
+  --cui-emphasis-color: #fff;
+  --cui-gutter-x: 1rem;
+  --cui-gutter-y: 1rem;
+}
+
+.path-frontpage:not(.user-logged-in) .wrapper-main {
+  background: url('../images/intro-Dublin.jpg') center 8rem no-repeat;
+  width: 960px;
+  min-height: 85vh;
+  margin: 2rem auto 0;
+}
+
+body {
+  background-color: #000000 !important;
+  color: #eee;
+  font-family: "Roboto", verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a:link {
+  color: #9c77d1;
+  text-decoration:none;
+}
+
+a:visited {
+  color: #009999;
+}
+
+a:hover {
+  color:#F7F7F7;
+}
+
+/* Generic Layout */
+.row {
+  --cui-gutter-x: 1.5rem;
+  --cui-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--cui-gutter-y));
+  margin-right: calc(-.5 * var(--cui-gutter-x));
+  margin-left: calc(-.5 * var(--cui-gutter-x));
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--cui-gutter-x) * .5);
+  padding-left: calc(var(--cui-gutter-x) * .5);
+  margin-top: var(--cui-gutter-y);
+}
+.col {
+  flex: 1 0 0%;
+}
+
+.game__wrapper,
+.game__wrapper .layout-container {
+  background-color: #000000 !important;
+  color: #eee;
+  font-family: "Roboto", verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.game__wrapper .layout-container a:link {
+  color: #9c77d1;
+  text-decoration:none;
+}
+
+.game__wrapper .layout-container a:visited {
+  color: #009999;
+}
+
+.game__wrapper .layout-container a:hover {
+  color:#F7F7F7;
+}
+
+.game__wrapper .layout-container h1,
+.game__wrapper .layout-container h2,
+.game__wrapper .layout-container h3 {
+  text-shadow: 2px 2px 2px #000;
+}
+
+.game__wrapper .layout-container h2,
+.game__wrapper .layout-container h3 {
+  font-family: Neutron Demo;
+}
+
+.game__wrapper .layout-container h1 {
+  font-family: Neutron Demo;
+  font-size: 2rem;
+}
+
+h1 {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+@font-face {
+  font-family: Neutron Demo;
+  src: local(" Neutron Demo"), url("../fonts/neutrond.ttf") format("truetype"), url("../fonts/neutrond.ttf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.path-frontpage:not(.user-logged-in) .wrapper-main {
+  background: url('../images/intro-Dublin.jpg') center 8rem no-repeat;
+  width: 960px;
+  min-height: 85vh;
+  margin: 2rem auto 0;
+}
+
+.client .layout-container {
+    display: flex;
+}
+
+.client .sidebar-2 {
+  padding-left: 2rem;
+}
+
+.tabs {
+  flex: 0 1 auto;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.client .layout-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1280px;
+}
+
+.tabs .tab-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.tabs .tab-buttons a,
+.tabs .tab-buttons button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  text-transform: uppercase;
+  color: white;
+  background-color: #333;
+  font-family: 'Neutron Demo';
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: 0 none;
+  height: 3rem;
+  border-radius: 0 !important;
+  box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.5s ease, width 4s 4s;
+}
+
+.tabs .tab-buttons a:hover,
+.tabs .tab-buttons a:focus,
+.tabs .tab-buttons a.active,
+.tabs .tab-buttons button:hover,
+.tabs .tab-buttons button:focus,
+.tabs .tab-buttons button.active {
+  color: white;
+  background-color: var(--emc-teal);
+  border: 0 none;
+  box-shadow: inset -5px -5px 10px 0px rgba(12, 7, 7, 0.5), inset 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.tabs .tab-buttons a.active,
+.tabs .tab-buttons button.active {
+  background-color: var(--emc-teal-dark);
+  width: 300px;
+}
+
+.tabs .tab-buttons a.active:hover,
+.tabs .tab-buttons button.active:hover {
+  color: white;
+  background-color: var(--emc-teal-alt);
+}
+
+.path-frontpage:not(.user-logged-in) .region-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 70vh;
+}
+
+.tab-panels {
+  height: 100%;
+}
+
+/* Profile */
+.emc-user > .form-item.form-no-label {
+  margin-bottom: 2rem;
+}
+
+.emc-player {
+  background-color: #000000 !important;
+  color: #eee;
+  font-family: "Roboto", verdana, arial, helvetica, sans-serif;
+}
+
+.emc-player .emc-player__wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+  grid-template-areas:
+    "stats1 stats2 stats3 stats4";
+  margin-bottom: 2rem;
+}
+
+.emc-player .emc-player__wrapper .emc-player__stats:nth-last-child(2) {
+  grid-area: stats3;
+  background-color: var(--emc-teal-dark-rich);
+}
+.emc-player .emc-player__wrapper .emc-player__stats:last-child {
+  grid-area: stats4;
+  background-color: var(--emc-dark);
+}
+
+.emc-player .emc-player__wrapper .emc-player__stats {
+  background: var(--emc-black-rich);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Skills field */
+.field--name-field-faction > .field__items,
+.field--name-field-skill > .field__items {
+  margin-bottom: 4rem;
+}
+
+/* .field--name-field-faction > .field__label,
+.field--name-field-skill > .field__label {
+  font-size: 2rem;
+  text-shadow: 2px 2px 2px #000;
+  font-family: Neutron Demo;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cui-heading-color);
+  margin-bottom: 0.5rem;
+} */
+
+.field--name-field-skill > .field__items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+
+.field--name-field-skill > .field__items > .field__item {
+  background: var(--emc-black);
+  padding: 1rem;
+}
+
+.field--name-field-skill > .field__items .field__item > a {
+  font-size: 1.25rem;
+}
+
+.client .layout-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.client .layout-container .main {
+  flex: 1 0 960px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.client .layout-container .sidebar-2 {
+  flex: 1 0 280px;
+}
+
+@media only screen and (min-width: 1366px) {
+  .game__wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+  }
+
+  .client .layout-container {
+    display: flex;
+  }
+
+  .client .layout-container .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 0 960px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .client .layout-container .sidebar-2 {
+    flex: 1 0 280px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .client .layout-container {
+    display: flex;
+  }
+
+  .client .layout-container .main {
+    flex: 1 0 960px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .client .layout-container .sidebar-2 {
+    flex: 0 1 auto;
+  }
+}
+
+/* Increase width of sidebar on small screens */
+@media only screen and (min-width: 1600px) {
+  .client .layout-container .sidebar-2 {
+    flex: 1 0 280px;
+  }
+}
+
+.flag a {
+  padding: 0.25rem 0.75rem;
+  margin: 2rem 0;
+  display: inline-block;
+  border: 2px solid transparent !important;
+}
+
+.flag a:link,
+.flag a:focus
+.flag a:hover {
+  color: white;
+}
+
+.flag.action-unflag a {
+  background-color: var(--emc-dark);
+}
+
+.flag.action-flag a {
+  background-color: var(--emc-teal-dark-rich);
+}
+
+.flag a:hover {
+  background-color: var(--emc-black);
+  border: 2px solid white !important;
+}
+
+.field--name-field-switches {
+  margin-bottom: 1rem;
+}
+
+.region-user-content table {
+  width: 100%;
+}
+.region-user-content th,
+.region-user-content td {
+  padding: 0 0.25rem;
+  text-align: left;
+}
+.region-user-content th {
+  background-color: var(--emc-dark);
+}
+.region-user-content td {
+  background-color: var(--emc-black);
+}
+
+.region-user-content > div {
+  margin-bottom: 3rem;
+}
+
+.block.block-views h3 {
+  font-size: 2rem;
+  text-shadow: 2px 2px 2px #000;
+  font-family: Neutron Demo;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cui-heading-color);
+  margin-bottom: 0.5rem;
+}

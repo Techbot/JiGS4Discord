@@ -1,0 +1,82 @@
+jigs.my_state:
+  path: 'states/mystate'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myState'
+    _title: 'game state'
+  requirements:
+    _permission: 'access content'
+
+
+jigs.player_state:
+  path: 'states/myplayer'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myPlayerState'
+    _title: 'player state'
+  requirements:
+    _permission: 'access content'
+
+
+jigs.my_inventory:
+  path: '/myinventory'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myInventory'
+    _title: 'game inventory'
+  requirements:
+    _permission: 'access content'
+
+jigs.to_backpack:
+  path: '/tobackpack'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::toBackpack'
+    _title: 'to Backpack'
+  requirements:
+    _permission: 'access content'
+
+jigs.to_storage:
+  path: '/tostorage'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::toStorage'
+    _title: 'to Storage'
+  requirements:
+    _permission: 'access content'
+
+jigs.my_mission:
+  path: '/mymission'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myMission'
+    _title: 'game mission'
+  requirements:
+    _permission: 'access content'
+
+jigs.add_mission:
+  path: '/addmission'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::addMission'
+    _title: 'add mission'
+  requirements:
+    _permission: 'access content'
+
+jigs.my_missions:
+  path: '/mymissions'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myMissions'
+    _title: 'game missions'
+  requirements:
+    _permission: 'access content'
+
+
+jigs.flick_switch:
+  path: '/flickswitch'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::flickSwitch'
+    _title: 'flick switch'
+  requirements:
+    _permission: 'access content'
+
+jigs.my_switches:
+  path: '/user/{user}/switches'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::mySwitches'
+    _title: 'Some Title'
+  requirements:
+    _permission: 'access content'
