@@ -14,6 +14,7 @@
  <li>NodeJs : https://nodejs.org/</li>
  <li>VueJs : https://vuejs.org/</li>
 </ul>
+
 ## Resources
 * https://trello.com/b/l2K2UFWa/map</li>
 * https://trello.com/b/3Hdp3Bn5/characters</li>
