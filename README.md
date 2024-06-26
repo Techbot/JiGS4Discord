@@ -6,16 +6,15 @@
 
 ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/003-grid-001-GPO.png)
 
-## DEMO
-
-<ul>
- <li>The Eclectic Meme Conspiracy - https://www.eclecticmeme.com</li>
- <li>JiGS DEMO Site - http://jigs.tilaa.cloud</li>
- <li>Your server here</li>
- </ul>
-
+[Installation:](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
+<ul> 
+ <li>ColyseusJs : https://github.com/colyseus/colyseus</li>
+ <li>Drupal : https://www.drupal.org/</li>
+ <li>PhaserJs : https://phaser.io/</li>
+ <li>NodeJs : https://nodejs.org/</li>
+ <li>VueJs : https://vuejs.org/</li>
+</ul>
 ## Resources
-
 * https://trello.com/b/l2K2UFWa/map</li>
 * https://trello.com/b/3Hdp3Bn5/characters</li>
 * https://trello.com/b/JGvVtu0x/objects</li>
@@ -173,15 +172,6 @@ JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in
 
 The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.
 
-[Installation:](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
-<ul>
- <li>Drupal : https://www.drupal.org/</li>
- <li>PhaserJs : https://phaser.io/</li>
- <li>NodeJs : https://nodejs.org/</li>
- <li>VueJs : https://vuejs.org/</li>
- <li>ColyseusJs : https://github.com/colyseus/colyseus</li>
- <li>Reldens : https://github.com/damian-pastorini/reldens</li>
-</ul>
 
 Featurelist:
 <ul>
