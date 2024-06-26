@@ -1,5 +1,5 @@
-# JiGS
-## An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS
+# JiGS 4 Discord
+## A Colyseus and Drupal Backend for an Online Realtime Multiplayer RPG Trading game engine in Discord.
 
 ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/warningL.png) Ready For Testing ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/warningR.png)
 
