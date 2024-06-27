@@ -2,7 +2,7 @@
  * ------- Mission Dialog ---------
  */
 import axios from "axios";
-import WebFont from '../../assets/WebFont'
+//import WebFont from '../../assets/WebFont.ts'
 
 export default class Mission {
   constructor() {
