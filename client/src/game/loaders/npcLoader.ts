@@ -15,7 +15,7 @@ export default class NpcLoader {
   }
 
   add(scene) {
-    console.log("------------NPC Loader---------------")
+    console.log("********************* NPC Loader")
 
     if (this.jigs.npcArray) {
       this.jigs.npcArray.forEach(function loader(Npc) {

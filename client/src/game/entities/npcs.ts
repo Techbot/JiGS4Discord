@@ -19,15 +19,16 @@ export default class NPCs {
     this.SceneNpcNameArray = new Array;
   }
 
-  add(self) {
-    self.npcGroup = self.physics.add.group({ allowGravity: false });
+  add(scene) {
+    scene.npcGroup = scene.physics.add.group({ allowGravity: false });
     if (typeof this.jigs.npcArray !== 'undefined') {
       let i = 0;
       while (i < this.jigs.npcArray.length) {
-        this.NpcContainerArray[i] = self.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
-        this.SceneNpcArray[i] = new Npc(self, this.jigs.npcArray[i]);
+        this.NpcContainerArray[i] = scene.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
 
-        this.SceneNpcNameArray[i] = self.add.text(10, -10, this.jigs.npcArray[i][0], {
+        this.SceneNpcArray[i] = new Npc(scene, this.jigs.npcArray[i]);
+
+        this.SceneNpcNameArray[i] = scene.add.text(10, -10, this.jigs.npcArray[i][0], {
           font: "12px Neutron Demo",
           fill: 'white',
           fontStyle: 'strong',
@@ -36,8 +37,8 @@ export default class NPCs {
         this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
         this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
         this.NpcContainerArray[i].setDepth(5);
-        this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
-        self.npcGroup.add(this.NpcContainerArray[i], true);
+       // this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
+        scene.npcGroup.add(this.NpcContainerArray[i], true);
         console.log("add container " + this.jigs.npcArray[i][0]);
         i++;
       }

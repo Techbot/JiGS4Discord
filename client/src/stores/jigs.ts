@@ -60,7 +60,7 @@ Will you find my Balls?`,
     /** @type {{ text: string, x: number, y: number, sprite: number, isHandler: boolean}[]} */
     npcArray: [],
 
-    /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health: number, following: number}[]} */
+    /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health: number, following: string}[]} */
     mobArray: [],
 
     /** @type {{ target:number, name: string, x: number, y: number, type: string, health: number, field_frame_width_value: number, field_frame_height_value: number,}[]} */

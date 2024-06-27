@@ -99,7 +99,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
     }
 
     if (entityType == 'Zombie-Green') {
-        console.log('define zombie: ' + entityType);
+        console.log('********** define zombie: ' + entityType);
 
         walkAnim('default', 'default');
         stopAnim('default', 'default');
@@ -310,7 +310,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-    
+
 }
 
 

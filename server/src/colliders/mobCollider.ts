@@ -14,19 +14,24 @@ export class mobCollider {
       return;
     }
 
-    if (bodyA.isMob && !bodyA.dead) {
+    if (bodyA.isMob && !bodyA.dead && bodyB.isPlayer) {
+
+
+console.log('mob hits player');
+
+
       //  if (!bodyA.done) {
       //      console.log('Mobstrike!!!!');
       //     console.log('playerId: ' + bodyB.playerId);
       //      console.log('health: ' + bodyB.health);
       bodyB.struck = true;
-      const promise1 = Promise.resolve(playerModel.updatePlayerStats(bodyB.profileId, 'health', -10, false));
+      const promise1 = Promise.resolve(playerModel.updatePlayerStats(bodyB.discordName, 'health', -10, false));
       promise1.then(() => {
         bodyB.health = bodyB.health - 10;
 
         if (bodyB.health <= 0) {
           //bodyB.health = 0;
-          const promise1 = Promise.resolve(playerModel.updatePlayerStats(bodyB.profileId, 'health', 80, true));
+          const promise1 = Promise.resolve(playerModel.updatePlayerStats(bodyB.discordName, 'health', 80, true));
           room.broadcast("dead", bodyB.profileId);
         }
       });

@@ -198,7 +198,7 @@ function updatePlayerStats(id: string, stat: string | undefined, value: string, 
     con.query(
       `UPDATE players` +
       ` SET ` + stat + ` = ` + stat + ` + ` + value +
-      ` WHERE players.player = ` + id,
+      ` WHERE players.player = '` + id + `'`,
       function (err, result, fields) {
         if (err) throw err;
         return true;

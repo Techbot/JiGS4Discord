@@ -11,10 +11,10 @@ var playerModel = require('../models/player.ts');
 
 export class P2player {
   Body: any;
-  name: any;
+  discordName: any;
 
-  constructor(name:string) {
-    this.name = name;
+  constructor(discordName:string) {
+    this.discordName = discordName;
   }
 
   async load(id: any, share: any, player) {
@@ -31,9 +31,7 @@ export class P2player {
       const playerShape = new p2.Box({ width: 32, height: 32 });
       playerShape.collisionGroup = share.COL_PLAYER;
       playerShape.collisionMask = share.COL_ENEMY | share.COL_GROUND;
-      this.Body.discordName = this.name;
-
-      this.Body.playerId = id;
+      this.Body.discordName = this.discordName;
     //  this.Body.profileId = result[0].profile_id;
       this.Body.isPlayer = true;
       this.Body.position[0] = result[0].x;
