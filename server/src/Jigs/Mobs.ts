@@ -164,25 +164,25 @@ export class Mob {
 
     if (!body.dead) {
       body.velocity[0] = 0;
-      if (parseInt(body.position[0]) > body2.position[0]) {
+      if (parseInt(body.position[0]) > body2.position[0]+50) {
         body.velocity[0] = -amount;
         body.velocity[1] = 0;
-        body.direction ='left'
+        body.direction ='Left'
       }
-     else if (parseInt(body.position[0]) < body2.position[0]) {
+      if (parseInt(body.position[0]) < body2.position[0]-50) {
         body.velocity[0] = amount;
         body.velocity[1] = 0;
-        body.direction = 'right'
+        body.direction = 'Right'
       }
-     else if (parseInt(body.position[1]) > body2.position[1]) {
+      if (parseInt(body.position[1]) > body2.position[1]+50) {
         body.velocity[0] = 0;
         body.velocity[1] = -amount;
-        body.direction = 'up'
+        body.direction = 'Up'
       }
-      else if (parseInt(body.position[1]) < body2.position[1]) {
+       if (parseInt(body.position[1]) < body2.position[1]-50) {
         body.velocity[0] = 0;
         body.velocity[1] = amount;
-        body.direction = 'down'
+        body.direction = 'Down'
       }
     }
   }

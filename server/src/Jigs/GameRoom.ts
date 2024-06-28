@@ -203,6 +203,7 @@ export class GameRoom extends Room<MyRoomState> {
       }
     });
   }
+/////////////////////////////////////////////////////////////////////////
 
   fixedTick(timeStep: number) {
     const velocity = 2;
