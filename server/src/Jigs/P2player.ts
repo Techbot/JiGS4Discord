@@ -48,7 +48,9 @@ export class P2player {
   }
 
   update(input: InputData,
-    player: { lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any; },
+    player: {
+      direction: string; lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any;
+},
     velocity: number) {
     velocity = 76;
 
@@ -65,6 +67,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = velocity;
         this.Body.velocity[0] = 0;
+        player.direction ="Down"
       }
       else {
         this.Body.position[0] += 32;
@@ -75,6 +78,7 @@ export class P2player {
 
         this.Body.velocity[1] = -velocity;
         this.Body.velocity[0] = 0;
+        player.direction = "Up"
       }
       else {
         this.Body.position[0] -= 32;
@@ -84,6 +88,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = 0;
         this.Body.velocity[0] = velocity;
+        player.direction = "Right"
       }
       else {
         this.Body.position[1] += 32;
@@ -93,6 +98,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = 0;
         this.Body.velocity[0] = -velocity;
+        player.direction = "Left"
       }
       else {
         this.Body.position[1] -= 32;

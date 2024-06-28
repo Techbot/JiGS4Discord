@@ -33,8 +33,6 @@ export default class PlayerMovement {
     }
 
     if (this.scene.inputPayload.down) {
-
-      console.log('******* down *******')
       const tile = colliderMap.getTileAtWorldXY(currentPlayer.x, currentPlayer.y + 16, true);
       if (tile) {
         currentPlayer.setVelocityY(velocity);

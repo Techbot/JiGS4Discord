@@ -22,6 +22,7 @@ import type { MyRoomState, Player } from '../../utils/MyRoom.ts';
 //import { PlayerObject } from '../../objects/PlayerObject.js';
 
 import MyPlayer from "../entities/player.js";
+import OtherPlayer from "../entities/otherPlayer.js";
 import Messenger from "../entities/messenger.js";
 import Rewards from "../entities/rewards.js";
 import Load from "../loaders/loader.js";
@@ -37,7 +38,7 @@ import Hydrater from '../../utils/Hydrater.js';
 export class MainScene extends Phaser.Scene {
   room: any;
   currentPlayer: Phaser.Types.Physics.Arcade.ImageWithDynamicBody | undefined;
-  playerEntities: { [sessionId: string]: Phaser.Types.Physics.Arcade.ImageWithDynamicBody } = {};
+  playerEntities: { [sessionId: string]: any } = {};
   debugFPS: Phaser.GameObjects.Text | undefined;
   cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
 
@@ -70,6 +71,7 @@ export class MainScene extends Phaser.Scene {
   cameras: any;
   //client: Client;
   localPlayer: MyPlayer | undefined;
+  otherPlayer: OtherPlayer | undefined;
   Loader: Load | undefined;
   scene: any;
   game: any;
@@ -136,54 +138,43 @@ export class MainScene extends Phaser.Scene {
     // connection successful!
     // connectionStatusText.destroy();
 
-    console.log("***** joined successfully ***************************" + this.jigs.room);
+    console.log("***** joined successfully *****************" + this.jigs.room);
 
     if (this.jigs.room == undefined) {
       console.log("undefined room ");
       this.scene.start('DeadScene');
       return;
     }
-    console.log("******************** Init Messages **************************" + this.jigs.room);
+    console.log("**************** Init Messages ************" + this.jigs.room);
     // this.walkSound = this.sound.add('walk', { volume: 0.03 });
     // this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.06 });
     //  this.soundtrack.play();
     this.messenger.initMessages(this);
-    this.jigs.room.state.players.onAdd((player, sessionId) => {
+    this.jigs.room.state.players.onAdd((player: { username?: any; x: any; y: any; onChange: any; discordName?: any; direction?: any; }, sessionId: string | number) => {
       var entity: any;
       // is current player
       if (sessionId === this.jigs.room.sessionId) {
         this.jigs.playerId = player.username;
-
-        if (this.jigs.thing == false) {
-          this.jigs.thing == true;
-          this.jigs.localPlayer = new MyPlayer(this, this.jigs.room, player);
-          this.jigs.playerState = "alive";
-          this.jigs.content = this.jigs.dialogueArray;
-          this.Portals.add(this);
-          // this.events.emit('content');
-           //this.Rewards.add(this);
-             this.Mobs.add(this);
-             this.NPCs.add(this);
-
-         //    this.Bosses.add(this);
-             //this.Switches.add(this);
-             this.Walls.add(this);
-             //this.Folio.add(this);
-          this.jigs.localPlayer.add();
-        }
-
+        this.jigs.localPlayer = new MyPlayer(this, this.jigs.room, player);
+        this.jigs.playerState = "alive";
+        this.jigs.content = this.jigs.dialogueArray;
+        this.Portals.add(this);
+        // this.events.emit('content');
+        //this.Rewards.add(this);
+        this.Mobs.add(this);
+        this.NPCs.add(this);
+        //    this.Bosses.add(this);
+        //this.Switches.add(this);
+        this.Walls.add(this);
+        //this.Folio.add(this);
+        this.jigs.localPlayer.add();
+        this.playerEntities[sessionId] = entity;
       } else {
-        entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
-        // listening for server updates
-        player.onChange(() => {
-          //
-          // we're going to LERP the positions during the render loop.
-          //
-          entity.setData('serverX', player.x);
-          entity.setData('serverY', player.y);
-        });
+
+        const otherPlayer = new OtherPlayer(this, player);
+        otherPlayer.add();
+        this.playerEntities[sessionId] = otherPlayer;
       }
-      this.playerEntities[sessionId] = entity;
     });
     // remove local reference when entity is removed from the server
     this.jigs.room.state.players.onRemove((player, sessionId) => {
@@ -223,81 +214,6 @@ export class MainScene extends Phaser.Scene {
         this.jigs.room.leave(); // Backend
         this.scene.start('main'); //Frontend)
       })
-  }
-
-  hydratePlayer(response) {
-    console.log("***************** mapgrid " + response.data[0].value["player"]["mapgrid"])
-    this.jigs.playerStats = response.data[0].value["player"];
-    this.jigs.health = response.data[0].value["health"];
-    this.jigs.energy = response.data[0].value["energy"];
-    //this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
-    //this.profileId = parseInt(response.data[0].value["player"]["profileId"]);
-    //this.playerName = response.data[0].value["player"]["name"];
-    //this.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
-    this.jigs.userMapGrid = response.data[0].value["player"]["mapgrid"];
-    //this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-  }
-
-  hydrateMap(response, incMob) {
-    //  this.jigs.playerStats = response.data[0].value["player"];
-    // this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
-    // this.jigs.profileId = parseInt(response.data[0].value["player"]["profileId"]);
-    // this.jigs.playerName = response.data[0].value["player"]["name"];
-
-    //this.jigs.gameState     = response.data[0].value["player"]["userState"];
-    //  this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
-    this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-    this.jigs.soundtrack = response.data[0].value["MapGrid"]["soundtrack"];
-    this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-    this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-    this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-
-    if (response.data[0].value["MapGrid"]["switchesArray"]) {
-      this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
-    }
-
-    this.jigs.dialogueArray = response.data[0].value["MapGrid"]["dialogueArray"];
-    this.jigs.fireArray = response.data[0].value["MapGrid"]["fireArray"];
-    this.jigs.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
-    this.jigs.leverArray = response.data[0].value["MapGrid"]["leverArray"];
-    this.jigs.machineArray = response.data[0].value["MapGrid"]["machineArray"];
-    this.jigs.crystalArray = response.data[0].value["MapGrid"]["crystalArray"];
-    this.jigs.foliosArray = response.data[0].value["MapGrid"]["foliosArray"];
-    this.jigs.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
-    this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-    if (incMob) {
-      this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-    }
-    this.jigs.bossesArray = response.data[0].value["MapGrid"]["bossesArray"];
-
-    this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-    this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
-    this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-    this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-    this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-    this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-    this.jigs.city = response.data[0].value["City"];
-    // Regex replaces close/open p with \n new line
-    // And replaces all other html tags with null.
-    this.jigs.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
-    this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
-  }
-
-  hydrateMission(response) {
-    this.jigs.title = response.data[0].value["title"];
-    this.jigs.missionHandlerDialog = response.data[0].value["handler_dialog"];
-    let no = { text: 'No I am not ready.', value: 0 }
-    let yes = { text: response.data[0].value["choice"], value: response.data[0].value["value"] };
-    this.jigs.choice = new Array;
-    this.jigs.choice.push(yes);
-    this.jigs.choice.push(no);
-    // console.log(this.jigs.choice);
-  }
-
-  hydrateSwitches(response, id) {
-    this.jigs.switchesArray.push(id);
-    //this.updatePhaser
   }
 
   async connect(room) {
@@ -349,17 +265,14 @@ export class MainScene extends Phaser.Scene {
       this.Bosses.updateBosses(this);
     }
 
+    ////////////////////// Update Other Players ////////////////////////////////////
+
     for (let sessionId in this.playerEntities) {
       if (sessionId === this.jigs.room.sessionId) {
         continue;
       }
       if (this.playerEntities[sessionId] !== undefined) {
-        const entity = this.playerEntities[sessionId];
-        if (entity.data) {
-          const { serverX, serverY } = entity.data.values;
-          entity.x = Phaser.Math.Linear(entity.x, serverX, 0.2);
-          entity.y = Phaser.Math.Linear(entity.y, serverY, 0.2);
-        }
+        this.playerEntities[sessionId].update();
       }
     }
   }

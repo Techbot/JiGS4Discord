@@ -17,6 +17,8 @@ export class Player extends Schema {
   @type("number") mouseX: number;
   @type("number") mouseY: number;
   @type("number") health: number;
+  @type("string") direction: string;
+  
 
   inputQueue: InputData[] = [];
   P2: Promise<void>;

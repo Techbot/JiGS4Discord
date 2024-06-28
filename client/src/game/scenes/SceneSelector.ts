@@ -70,9 +70,7 @@ export class SceneSelector extends Phaser.Scene {
                 on("pointerdown", () => {
                     this.game.scene.switch("selector", 'main');
                 });
-
-            this.jigs.playerId = player.username;
-            console.log('////////////////////////////////' + player.username)
+              console.log('////////////////////////////////' + player.username)
             //////////////////////////////////////////////////////////////////////////
             this.jigs.discordName = player.username;
             this.updatePlayer();

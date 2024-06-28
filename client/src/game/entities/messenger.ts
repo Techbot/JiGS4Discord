@@ -15,7 +15,6 @@ export default class Messenger {
       scene.jigs.userMapGrid = message;
       const promise1 = Promise.resolve(scene.jump());
 
-
       //  hide(this.localPlayer);
     });
 
@@ -28,7 +27,7 @@ export default class Messenger {
       }
     });
 
-/*     scene.jigs.room.onMessage("dead", (message) => {
+     scene.jigs.room.onMessage("dead", (message) => {
       console.log('dead');
       if (scene.jigs.playerState != "dead") {
         scene.currentPlayer.anims.play('hurt_' + scene.jigs.playerStats.sprite_sheet);
@@ -36,21 +35,21 @@ export default class Messenger {
       scene.jigs.playerState = "dead";
     });
 
-    scene.room.onMessage("reward", (message) => {
+    scene.jigs.room.onMessage("reward", (message) => {
       scene.jigs.playerStats.credits++;
       //   this.incrementReward();
     });
 
-    scene.room.onMessage("player hit", (message) => {
+    scene.jigs.room.onMessage("player hit", (message) => {
       scene.updateState();
     });
 
-    scene.room.onMessage("struck", (message) => {
+    scene.jigs.room.onMessage("struck", (message) => {
       console.log('struck:' + message);
       scene.jigs.playerStats.health = message;
     });
 
-    scene.room.onMessage("zombie dead", (message) => {
+    scene.jigs.room.onMessage("zombie dead", (message) => {
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
         if (scene.jigs.mobArray[i][1] == message) {
@@ -60,12 +59,7 @@ export default class Messenger {
         i++;
       }
       scene.updateState();
-    }); */
-
-
-
-
-
+    });
 
     /*     scene.room.onMessage("remove-reward", (message) => {
           let i = 0;
@@ -97,7 +91,7 @@ export default class Messenger {
           scene.jigs.mobArray[i][2] = parseInt(value.field_x_value);
           scene.jigs.mobArray[i][3] = parseInt(value.field_y_value);
           scene.jigs.mobArray[i][6] = parseInt(value.health);
-          scene.jigs.mobArray[i][7] = parseInt(value.direction);
+          scene.jigs.mobArray[i][7] = value.direction;
         }
         i++;
       }
