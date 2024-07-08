@@ -63,7 +63,7 @@ Will you find my Balls?`,
     /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health: number, following: string, direction: string}[]} */
     mobArray: [],
 
-    /** @type {{ target:number, name: string, x: number, y: number, type: string, health: number, field_frame_width_value: number, field_frame_height_value: number,}[]} */
+    /** @type {{ target:number, name: string, x: number, y: number, type: string, health: number, field_frame_width_value: number, field_frame_height_value: number, direction: string}[]} */
     bossesArray: [],
 
     /** @type {{ text: string, x: number, y: number, sprite: number}[]} */
