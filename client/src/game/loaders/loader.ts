@@ -30,9 +30,9 @@ export default class Load {
     constructor() {
        this.jigs = useJigsStore();
        this.mobLoader= new MobLoader();
-     //  this.bossLoader = new BossLoader();
-        this.npcLoader = new NpcLoader();
-        this.tilesetLoader = new TilesetLoader();
+       this.bossLoader = new BossLoader();
+       this.npcLoader = new NpcLoader();
+       this.tilesetLoader = new TilesetLoader();
     //    this.switchLoader = new SwitchLoader();
      //   this.questLoader = new QuestLoader();
     }
@@ -54,7 +54,7 @@ export default class Load {
         this.tilesetLoader.add(scene);
         this.npcLoader.add(scene);
         this.mobLoader.add(scene);
-     //   this.bossLoader.add(scene);
+        this.bossLoader.add(scene);
     //    this.switchLoader.add(scene);
    //     this.questLoader.add(scene);
 
@@ -81,7 +81,7 @@ export default class Load {
 
             if (this.jigs.bossesArray) {
                 this.jigs.bossesArray.forEach(function loader(boss) {
-                    createBossAnims(scene.anims, boss, "default");
+                    createBossAnims(scene.anims, boss.name);
                 });
             }
 

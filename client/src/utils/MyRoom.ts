@@ -18,7 +18,6 @@ export class Player extends Schema {
   @type("number") mouseY: number;
   @type("number") health: number;
   @type("string") direction: string;
-  
 
   inputQueue: InputData[] = [];
   P2: Promise<void>;
@@ -62,6 +61,7 @@ export class BossState extends Schema {
   @type("number") y: number;
   @type("number") health: number;
   @type("number") dead: number;
+  @type("string") direction: string;
 }
 
 export class PlayerMap extends Schema {
@@ -82,4 +82,3 @@ export class MyRoomState extends Schema {
   @type({ map: PlayerMap }) playerMap = new MapSchema<PlayerMap>();
 
 }
-

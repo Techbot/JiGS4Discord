@@ -64,6 +64,7 @@ export class BossState extends Schema {
   @type("number") y: number;
   @type("number") health: number;
   @type("number") dead: number;
+  @type("string") direction: string;
 }
 
 export class PlayerMap extends Schema {

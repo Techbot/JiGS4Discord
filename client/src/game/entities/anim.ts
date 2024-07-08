@@ -4,7 +4,7 @@
 
 import Phaser from 'phaser'
 
-const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType: string, npcSheet: string) => {
+const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType: string) => {
 
     walkAnim();
 
@@ -13,29 +13,29 @@ const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType: 
         console.log(entityType + '-walk')
 
         anims.create({
-            key: entityType + '-walkUp',
-            frames: anims.generateFrameNumbers(entityType + '-walk', { frames: [0, 1, 2] }),
+            key: entityType + '-walkDown',
+            frames: anims.generateFrameNumbers('boss_' + entityType , { frames: [0, 1, 2] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
             key: entityType + '-walkLeft',
-            frames: anims.generateFrameNumbers(entityType + '-walk' , { frames: [3, 4, 5] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: entityType + '-walkDown',
-            frames: anims.generateFrameNumbers(entityType + '-walk', { frames: [6, 7, 8] }),
+            frames: anims.generateFrameNumbers('boss_' + entityType , { frames: [3, 4, 5] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
             key: entityType + '-walkRight',
-            frames: anims.generateFrameNumbers(entityType + '-walk', { frames: [9, 10, 11] }),
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [6, 7, 8] }),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        anims.create({
+            key: entityType + '-walkUp',
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [9, 10, 11] }),
             frameRate: 12,
             repeat: -1
         });
@@ -312,7 +312,6 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
     }
 
 }
-
 
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     entity,
