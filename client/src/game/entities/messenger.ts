@@ -103,17 +103,19 @@ export default class Messenger {
       let i = 0;
       while (i < scene.jigs.bossesArray.length) {
 
-        console.log('key' + value.entity_id)
-        console.log('2' + scene.jigs.bossesArray[i].target)
+        console.log('****************** boss key' + value.entity_id)
+        console.log('****************** boss 2' + scene.jigs.bossesArray[i].target)
 
         if (scene.jigs.bossesArray[i].target == key) {
+
+          console.log('****************** boss direction' + value.direction)
+
           scene.jigs.bossesArray[i].x = parseInt(value.x);
           scene.jigs.bossesArray[i].y = parseInt(value.y);
           scene.jigs.bossesArray[i].health = parseInt(value.health);
-
+          scene.jigs.bossesArray[i].direction = value.direction;
         }
         i++;
-      }
-    });
+      }    });
   }
 }

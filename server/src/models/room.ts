@@ -239,6 +239,18 @@ function updateBanks() {
   return;
 }
 
+
+function updateDiscordBanks() {
+  con.query(
+    `UPDATE players SET credits = credits + 1 WHERE 1 = 1`,
+    function (err, result, fields) {
+      if (err) throw err;
+      return true;
+    }
+  );
+  return;
+}
+
 module.exports = {
   getRoom,
   getPortals,
@@ -248,5 +260,6 @@ module.exports = {
   getSwitches,
   getRewards,
   getBosses,
-  updateBanks
+  updateBanks,
+  updateDiscordBanks,
 };

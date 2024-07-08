@@ -163,7 +163,7 @@ export class MainScene extends Phaser.Scene {
         //this.Rewards.add(this);
         this.Mobs.add(this);
         this.NPCs.add(this);
-        //    this.Bosses.add(this);
+        this.Bosses.add(this);
         //this.Switches.add(this);
         this.Walls.add(this);
         //this.Folio.add(this);
