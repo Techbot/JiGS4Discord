@@ -11,10 +11,10 @@ var playerModel = require('../models/player.ts');
 
 export class P2player {
   Body: any;
-  name: any;
+  discordName: any;
 
-  constructor(name:string) {
-    this.name = name;
+  constructor(discordName:string) {
+    this.discordName = discordName;
   }
 
   async load(id: any, share: any, player) {
@@ -31,9 +31,7 @@ export class P2player {
       const playerShape = new p2.Box({ width: 32, height: 32 });
       playerShape.collisionGroup = share.COL_PLAYER;
       playerShape.collisionMask = share.COL_ENEMY | share.COL_GROUND;
-      this.Body.discordName = this.name;
-
-      this.Body.playerId = id;
+      this.Body.discordName = this.discordName;
     //  this.Body.profileId = result[0].profile_id;
       this.Body.isPlayer = true;
       this.Body.position[0] = result[0].x;
@@ -50,7 +48,9 @@ export class P2player {
   }
 
   update(input: InputData,
-    player: { lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any; },
+    player: {
+      direction: string; lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any;
+},
     velocity: number) {
     velocity = 76;
 
@@ -67,6 +67,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = velocity;
         this.Body.velocity[0] = 0;
+        player.direction ="Down"
       }
       else {
         this.Body.position[0] += 32;
@@ -77,6 +78,7 @@ export class P2player {
 
         this.Body.velocity[1] = -velocity;
         this.Body.velocity[0] = 0;
+        player.direction = "Up"
       }
       else {
         this.Body.position[0] -= 32;
@@ -86,6 +88,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = 0;
         this.Body.velocity[0] = velocity;
+        player.direction = "Right"
       }
       else {
         this.Body.position[1] += 32;
@@ -95,6 +98,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = 0;
         this.Body.velocity[0] = -velocity;
+        player.direction = "Left"
       }
       else {
         this.Body.position[1] -= 32;

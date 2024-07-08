@@ -45,7 +45,7 @@ export default class Player {
         this.playerMovement = new PlayerMovement(scene);
         this.staticNum = 0;
 
-        this.entity = scene.physics.add.sprite(player.x, player.y, 'player-down-glowsword')
+        this.entity = scene.physics.add.sprite(player.x, player.y, 'player-walk-glowsword')
             .setDepth(7)
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
             .on('pointerdown', this.onPlayerDown.bind(scene))

@@ -22,7 +22,7 @@ export default () => {
 
   cron.schedule(EVERY_MINUTE, () => {
     console.log('Banks');
-    const promise1 = Promise.resolve(roomModel.updateBanks());
+    const promise1 = Promise.resolve(roomModel.updateDiscordBanks());
     promise1.then(() => {
       console.log('cool');
     }).catch((e) => {

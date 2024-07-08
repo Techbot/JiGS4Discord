@@ -2,7 +2,7 @@ import config from "@colyseus/tools";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { auth, JWT } from "@colyseus/auth";
-//import type { MyRoomState, Player } from '../../utils/MyRoom.ts';
+import type { MyRoomState} from './rooms/MyRoom.ts';
 import loaders from './loaders';
 //import { createServer } from "http";
 import globalEmitter from './loaders/eventEmitter';
@@ -142,12 +142,6 @@ export default config({
         res.status(400).send({ error: e.message });
       }
     });
-
-
-
-
-
-
 
     /**
      * Use @colyseus/playground

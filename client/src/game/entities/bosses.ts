@@ -1,7 +1,7 @@
 /**
  * ------- Bosses ---------
  */
-import Boss from "./boss";
+import Boss from "./boss.ts";
 import { useJigsStore } from '../../stores/jigs.ts';
 
 export default class Bosses {
@@ -45,8 +45,10 @@ export default class Bosses {
       if (this.jigs.bossesArray[i] != undefined) {
         this.BossContainerArray[i].x = this.jigs.bossesArray[i].x;
         this.BossContainerArray[i].y = this.jigs.bossesArray[i].y;
-     //   this.SceneBossHealthBarArray[i].displayWidth = this.jigs.bossesArray[i][6] / 4;
-        this.SceneBossHealthBarArray[i].displayWidth = 100 / 4;
+        this.SceneBossHealthBarArray[i].displayWidth = this.jigs.bossesArray[i].health / 4;
+        //this.SceneBossHealthBarArray[i].displayWidth = 100 / 4;
+        this.SceneBossArray[i].updateAnim(this.jigs.bossesArray[i].direction, this.jigs.bossesArray[i].name );
+
       }
       i++;
     };

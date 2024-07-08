@@ -293,6 +293,7 @@ h1 {
 .client .layout-container {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .client .layout-container .main {
@@ -308,7 +309,7 @@ h1 {
 @media only screen and (min-width: 1366px) {
   .game__wrapper {
     width: 100%;
-    max-width: 960px;
+    /* max-width: 960px; */
     margin: auto;
   }
 

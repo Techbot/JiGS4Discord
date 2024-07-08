@@ -4,38 +4,38 @@
 
 import Phaser from 'phaser'
 
-const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType, npcSheet) => {
+const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType: string) => {
 
-    walkAnim('saber', 'saber');
+    walkAnim();
 
-    function walkAnim(weapon, type) {
+    function walkAnim() {
 
-        console.log(entityType + '-walk-' + type)
+        console.log(entityType + '-walk')
 
         anims.create({
-            key: entityType + '-walkUp',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [0, 1, 2] }),
+            key: entityType + '-walkDown',
+            frames: anims.generateFrameNumbers('boss_' + entityType , { frames: [0, 1, 2] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
             key: entityType + '-walkLeft',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [3, 4, 5] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: entityType + '-walkDown',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [6, 7, 8] }),
+            frames: anims.generateFrameNumbers('boss_' + entityType , { frames: [3, 4, 5] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
             key: entityType + '-walkRight',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [9, 10, 11] }),
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [6, 7, 8] }),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        anims.create({
+            key: entityType + '-walkUp',
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [9, 10, 11] }),
             frameRate: 12,
             repeat: -1
         });
@@ -43,7 +43,7 @@ const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType, 
 
 }
 
-const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityType, npcSheet) => {
+const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityType: string, npcSheet: string | null) => {
     const mobtypeA = ['Lizard-Green'];
     const mobtypeB = ['Lizard-Bright-Green'];
     const mobtypeC = ['Lizard-Topaz'];
@@ -99,7 +99,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
     }
 
     if (entityType == 'Zombie-Green') {
-        console.log('define zombie: ' + entityType);
+        console.log('********** define zombie: ' + entityType);
 
         walkAnim('default', 'default');
         stopAnim('default', 'default');
@@ -107,9 +107,9 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
     }
 
     ////////////////////////////////////// Walk Anim 4 Directions //////////////////////////////
-    function walkAnim(weapon, type) {
+    function walkAnim(weapon:string, type:string) {
 
-        console.log(entityType + '-walk-' + type)
+        console.log('*************************' + entityType + '-walk-' + type)
 
         anims.create({
             key: entityType + '-walkUp-' + weapon,
@@ -214,9 +214,9 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
     function hurtAnim(weapon, type) {
         anims.create({
             key: entityType + '-hurt-' + weapon,
-            frames: anims.generateFrameNumbers(entityType + '-hurt-' + type, { frames: [0, 1, 2, 3, 4, 5] }),
+            frames: anims.generateFrameNumbers(entityType + '-hurt-' + type, { frames: [5,0, 1, 2, 3, 4, 5] }),
             frameRate: 12,
-            repeat: 0
+            repeat: -1
         });
     }
     ////////////////////////////////////// Shoot Anim 4 Directions //////////////////////////////
@@ -310,9 +310,8 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-    
-}
 
+}
 
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     entity,

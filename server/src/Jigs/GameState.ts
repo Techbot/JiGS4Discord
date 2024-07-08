@@ -18,6 +18,7 @@ export class Vec2 extends Schema {
 
 export class Player extends Schema {
 
+
   @type("string") username: string;
   @type("number") heroType: number; // sprite to use (1-12)
   @type(Vec2) position = new Vec2();
@@ -29,18 +30,20 @@ export class Player extends Schema {
   @type("number") mouseX: number;
   @type("number") mouseY: number;
   @type("number") health: number;
+  @type("string") direction: string;
 
   inputQueue: InputData[] = [];
   P2: Promise<void>;
   id: string;
   portal: number;
   Body: any;
+
   playerId: number;
   profileId: number;
   lastX: number;
   lastY: number;
   p2Player: any;
-
+  discordName: string;
 }
 
 export class ZombieState extends Schema {
@@ -49,8 +52,9 @@ export class ZombieState extends Schema {
   @type("number") field_x_value: number;
   @type("number") field_y_value: number;
   @type("number") health: number;
-  @type("number") following: number;
+  @type("string") following: string|undefined;
   @type("number") dead: number;
+  @type("string") direction: string;
 }
 export class BossState extends Schema {
   @type("number") field_boss_target_id: number;
@@ -60,6 +64,7 @@ export class BossState extends Schema {
   @type("number") y: number;
   @type("number") health: number;
   @type("number") dead: number;
+  @type("string") direction: string;
 }
 
 export class PlayerMap extends Schema {

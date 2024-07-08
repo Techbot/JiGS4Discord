@@ -21,16 +21,21 @@ export class SceneSelector extends Phaser.Scene {
         super({ key: "selector" });
         this.jigs = useJigsStore();
         this.hydrater = new Hydrater;
+
     }
 
     preload() {
         // update menu background color
         this.cameras.main.setBackgroundColor(0x000000);
         // this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-        this.load.image('einstein', '/assets/images/8b0f172a-80ed-4fbd-b357-c512127970ce.png');
+        this.load.image('auth', '/assets/images/game-home-authenticating.png');
+        this.load.image('enter', '/assets/images/game-home.png');
     }
 
     async create() {
+
+        this.image = this.add.image(480, 320, 'auth')
+
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
             color: "#ff0000",
             fontSize: "32px",
@@ -64,18 +69,26 @@ export class SceneSelector extends Phaser.Scene {
             profileId: 1
         });
 
-        this.relay.state.players.onAdd((player: any) => {
-            this.image = this.add.image(480, 320, 'einstein')
+
+        this.relay.state.players.onAdd((player: any,sessionId) => {
+            this.image = this.add.image(480, 320, 'enter')
                 .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' }).
                 on("pointerdown", () => {
                     this.game.scene.switch("selector", 'main');
                 });
-
-            this.jigs.playerId = player.username;
-            console.log('////////////////////////////////' + player.username)
+              console.log('////////////////////////////////' + player.username)
             //////////////////////////////////////////////////////////////////////////
+
+
+            if (sessionId === this.relay.sessionId) {
+
             this.jigs.discordName = player.username;
             this.updatePlayer();
+            }
+
+
+
+
         })
         this.relay.state.players.onRemove((player, sessionId) => {
         });

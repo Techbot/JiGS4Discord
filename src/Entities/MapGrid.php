@@ -47,6 +47,7 @@ class MapGrid
     }
     $mapGrid['npcArray']          = $this->getNpcs();
     $mapGrid['mobArray']          = $this->getMobs();
+    $mapGrid['bossesArray']       = $this->getBosses();
     $mapGrid['portalsArray']      = $this->getPortals();
 
     // $mapGrid['switchesArray']     = $this->getSwitches('switches');
