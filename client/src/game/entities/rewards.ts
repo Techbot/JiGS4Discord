@@ -1,7 +1,7 @@
 /**
  * -------Rewards ---------
  */
-import Reward from "./reward";
+import Reward from "./reward.ts";
 import { useJigsStore } from '../../stores/jigs.ts';
 
 export default class Rewards {

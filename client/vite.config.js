@@ -21,4 +21,16 @@ export default defineConfig({
 
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Ensure manualChunks is undefined to disable chunking
+        format: 'iife', // Use 'iife' format for a single self-contained file
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      },
+    },
+    chunkSizeWarningLimit: 5000, // Increase limit to avoid warnings
+  },
 })

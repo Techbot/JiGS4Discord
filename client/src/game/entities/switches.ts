@@ -1,7 +1,7 @@
 /**
  * -------Switches ---------
  */
-import Switch from "./switch";
+import Switch from "./switch.ts";
 export default class Switches {
     switchesGroup: any;
     add(scene) {

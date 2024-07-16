@@ -35,7 +35,8 @@ console.log('********* load Layers *********')
             map.addTilesetImage(image);
         }, this);
 
-        scene.colliderMap = map.createLayer('Tile Layer 1', this.jigs.tilesetArray_1).setDepth(1);
+        // @TODO figure out why collidermap doesn't exist
+        //scene.colliderMap = map.createLayer('Tile Layer 1', this.jigs.tilesetArray_1).setDepth(1);
         map.createLayer('Tile Layer 2', this.jigs.tilesetArray_2).setDepth(2).setPipeline('Light2D');
         map.createLayer('Tile Layer 3', this.jigs.tilesetArray_3).setDepth(3).setPipeline('Light2D');
         map.createLayer('Tile Layer 4', this.jigs.tilesetArray_4).setDepth(5).setPipeline('Light2D');

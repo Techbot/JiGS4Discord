@@ -128,9 +128,22 @@ function jigs_theme($existing, $type, $theme, $path) {
       'base hook' => 'profile',
       'path' => \Drupal::service('extension.list.module')->getPath('jigs') . '/templates',
     ],
+    'page__front' => [
+      'template' => 'page--front',
+      'base hook' => 'page',
+      'path' => \Drupal::service('extension.list.module')->getPath('jigs') . '/templates',
+    ],
 
   ];
 }
+
+
+function jigs_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $suggestions = ['page__front'];
+  }
+}
+
 
 function jigs_preprocess_page(&$variables) {
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {

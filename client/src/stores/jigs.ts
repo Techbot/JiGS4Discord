@@ -6,6 +6,8 @@ export const useJigsStore = defineStore("jigs", {
   state: () => ({
     room: {},
 
+    todos: [],
+
     playerName: "Blank",
 
     discordName: "Blank",

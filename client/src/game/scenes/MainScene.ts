@@ -10,7 +10,7 @@
  */
 
 import Phaser from "phaser";
-//import { Room, Client } from "colyseus.js";
+import { Room, Client } from "colyseus.js";
 //import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs.ts';
 import axios, { AxiosResponse } from "axios";
@@ -69,7 +69,7 @@ export class MainScene extends Phaser.Scene {
   key_down: any;
   bullets: any;
   cameras: any;
-  //client: Client;
+  client: Client;
   localPlayer: MyPlayer | undefined;
   otherPlayer: OtherPlayer | undefined;
   Loader: Load | undefined;

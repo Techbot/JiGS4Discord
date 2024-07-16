@@ -1,7 +1,7 @@
 /**
  * ------- Folios ---------
  */
-import Folio from "./folio";
+import Folio from "./folio.ts";
 
 export default class Folios {
     add(scene) {

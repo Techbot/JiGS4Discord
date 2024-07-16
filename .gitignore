@@ -7,37 +7,35 @@
 /web/bundles/
 /web/uploads/
 
+*node_modules
+
 # mine
 tiled
-/server/node_modules
-/server/lib
-/server/reports
-/server/arena.config.ts
-/server/src/services/db.ts
+server/lib
+server/reports
+server/arena.config.ts
 server/src/services/db.ts
 
 /vendor
 
-/client/dist/*
-/client/node_modules
-/client/.parcel-cache
-/client/src/game/backend.ts
-/client/src/assets/fonts/*
+client/.env*
+client/public
+client/dist/*
+client/.parcel-cache
+client/src/game/backend.ts
+client/src/assets/fonts/*
 
 node_modules
 LICENSE.md
 
-/config_init
-
-config
+config_init
 
 _JiGS_client
 _JiGS_server
 _phaser_server
 _phaser_client
 
-/public/
+public/
 
-server/.env
-client/.env
-client/public
+server/.env*
+

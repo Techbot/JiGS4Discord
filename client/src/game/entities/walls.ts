@@ -1,7 +1,7 @@
 /**
  * -------Walls ---------
  */
-import Wall from "../entities/wall";
+import Wall from "../entities/wall.ts";
 import { useJigsStore } from '../../stores/jigs.ts';
 
 export default class Walls {

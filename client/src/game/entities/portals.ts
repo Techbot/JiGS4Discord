@@ -1,7 +1,7 @@
 /**
  * -------Portals ---------
  */
-import Portal from "../entities/portal";
+import Portal from "../entities/portal.ts";
 export default class Portals {
     add(scene) {
         const portalsArray = scene.jigs.portalsArray;

@@ -3,7 +3,7 @@
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs.ts';
-import { createCharacterAnims } from "../entities/anim";
+import { createCharacterAnims } from "../entities/anim.ts";
 
 export default class Reward extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
