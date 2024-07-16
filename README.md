@@ -26,7 +26,7 @@
 ### Steps to build a world from the engine.
 
 #### Drupal Setup
-* Install Drupal (Standard Install)
+* Install Drupal (Minimal Install)
 * Download required modules (Paragraphs, Flag, Profile, Registration Role)
 
 `composer require 'drupal/profile:^1.10' 'drupal/paragraphs:^1.17' 'drupal/flag:^4.0@beta' 'drupal/registration_role:^2.0'`
@@ -61,7 +61,6 @@
 
 #### Testing Drupal Setup
 * In Drupal, go to Administration => Configuration => Development => Performance and clear all caches
-* On the command line, go to modules/custom/server and run `npm run start`
 * Go to the home page and verify that the game is running
   * Note: You might need to configure your webserver to route wildcard hostnames through to your Drupal folder!
 
