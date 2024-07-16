@@ -138,13 +138,6 @@ function jigs_theme($existing, $type, $theme, $path) {
 }
 
 
-function jigs_theme_suggestions_page_alter(array &$suggestions, array $variables) {
-  if (\Drupal::service('path.matcher')->isFrontPage()) {
-    $suggestions = ['page__front'];
-  }
-}
-
-
 function jigs_preprocess_page(&$variables) {
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
     // $variables['#attached']['library'][] =  'jigs/coreui-styles';

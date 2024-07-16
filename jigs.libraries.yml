@@ -7,7 +7,7 @@ phaser:
       css/phasertheme.css: {}
 
 client:
-  version: 3.0
+  version: 1.0
   js:
     client/dist/assets/index-D9FL85pF.js: { minified: true }
   css:

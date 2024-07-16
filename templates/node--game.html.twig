@@ -1,1 +1,39 @@
-<div id="module-name-game" class="game__wrapper"></div>
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class
+  ]
+%}
+  {% if logged_in %}
+    <div id="module-name-game" class="game__wrapper">
+    </div>
+  {% endif %}
+
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if not logged_in %}
+    <div{{ content_attributes.addClass('node__content') }}>
+      {{ content }}
+    </div>
+  {% endif %}
+</article>

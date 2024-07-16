@@ -43,7 +43,7 @@
 
 #### Colyseus Setup
 * cd into modules/custom/jigs/server
-* `npm install
+* `npm install`
 * copy src/services/db_SETUP.ts into src/services/db.ts and configure
 * Copy example.env to .env and configure
 * npm run start
