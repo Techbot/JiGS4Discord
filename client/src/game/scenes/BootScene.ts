@@ -51,6 +51,6 @@ export class BootScene extends Scene {
   }
 
   create () {
-    this.scene.start('HudScene');
+    this.scene.start('selector');
   }
 }
