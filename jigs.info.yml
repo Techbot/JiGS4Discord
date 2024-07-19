@@ -7,4 +7,10 @@ dependencies:
 - profile:profile
 - drupal:paragraphs
 - drupal:entity_reference_revisions
+- drupal:path
+- drupal:menu_ui
+- drupal:taxonomy
+- drupal:image
+- drupal:options
+- flag:flag
 - registration_role:registration_role

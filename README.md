@@ -7,7 +7,7 @@
 ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/003-grid-001-GPO.png)
 
 [Installation:](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
-<ul> 
+<ul>
  <li>ColyseusJs : https://github.com/colyseus/colyseus</li>
  <li>Drupal : https://www.drupal.org/</li>
  <li>PhaserJs : https://phaser.io/</li>
@@ -25,19 +25,50 @@
 
 ### Steps to build a world from the engine.
 
-* Install Drupal
-* Install Drupal/Paragraphs
-* Install Drupal/Flag
-* Install Drupal/Profile
-* clone Jigs into modules/custom/jigs or
+#### Drupal Setup
+* Install Drupal (Minimal Install)
+* Download required modules (Paragraphs, Flag, Profile, Registration Role)
+
+`composer require 'drupal/profile:^1.10' 'drupal/paragraphs:^1.17' 'drupal/flag:^4.0@beta' 'drupal/registration_role:^2.0'`
+
+* Helpful Drupal configurations:
+  * Administration =>Appearance => Claro => Install and set as default
+  * Administration => Extend => Toolbar
+
+* Clone Jigs into modules/custom/jigs or
 * Install Drupal/Jigs
-
 * Install the default content - https://github.com/Techbot/JiGS-demo-content
-* clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets
+  * If you followed these instructions, all you need to do is turn on the module.
+* Clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets
 
+#### Colyseus Setup
+* cd into modules/custom/jigs/server
+* `npm install`
+* copy src/services/db_SETUP.ts into src/services/db.ts and configure
+* Copy example.env to .env and configure
+* npm run start
+
+#### Phaser Setup
+* cd into modules/custom/jigs/client
+* Copy example.env to .env and configure
+* `npm install`
+* `npm run build`
+* Copy the css & js paths into modules/custom/jigs/jigs.libraries.yml and increment the version number
+* Run `npm run start`
+* In a new tab, run `npm tunnel`
+* Put the cloudflared URL into your Discord app's OAuth and URL Mappings
+* Test your new Discord app!
+
+#### Testing Drupal Setup
+* In Drupal, go to Administration => Configuration => Development => Performance and clear all caches
+* Go to the home page and verify that the game is running
+  * Note: You might need to configure your webserver to route wildcard hostnames through to your Drupal folder!
+
+#### World Setup
 * Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling
 * Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)
 
+## Misc
 With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld.
 
 Want magic? Create wands, magic stats, magical NPCs, bulidings and Cities in Drupal.

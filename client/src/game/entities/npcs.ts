@@ -1,7 +1,7 @@
 /**
  * -------NPCs ---------
  */
-import Npc from "./npc";
+import Npc from "./npc.ts";
 import { useJigsStore } from '../../stores/jigs.ts';
 import axios from "axios";
 

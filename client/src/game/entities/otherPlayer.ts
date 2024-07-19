@@ -16,10 +16,10 @@ export default class OtherPlayer {
   lastDirection: string | undefined;
   scene: Phaser.Scene;
   player: {
-    username?: any; x: any; y: any; onChange: (arg0: () => void) => void; discordName: any; direction: any;
+    username?: any; x: any; y: any; onChange: (arg0: () => void) => void; discordName?: any; direction?: any;
   };
 
-  constructor(scene: Phaser.Scene, player: { username?: any, x: any; y: any; onChange: (arg0: () => void) => void; discordName: any; direction: any; }) {
+  constructor(scene: Phaser.Scene, player: { username?: any, x: any; y: any; onChange: (arg0: () => void) => void; discordName?: any; direction?: any; }) {
     this.scene = scene;
     this.player = player;
     this.lastDirection = undefined;
@@ -34,7 +34,7 @@ export default class OtherPlayer {
     .setDepth(5)
     .setScale(.85);
 
-    this.entity.setTint(hsv[i].color);
+    // this.entity.setTint(hsv[i].color); // Color doesn't exist on this object???
 
     // listening for server updates
     this.player.onChange(() => {

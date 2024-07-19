@@ -2,8 +2,6 @@
  * -------NPC ---------
  */
 import Phaser from "phaser";
-import { useJigsStore } from '../../stores/jigs.ts';
-import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
 
 export default class Npc extends Phaser.Physics.Arcade.Sprite {

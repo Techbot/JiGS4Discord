@@ -1,7 +1,7 @@
 /**
  * ------- Drones ---------
  */
-import Drone from "./drone";
+import Drone from "./drone.ts";
 import { useJigsStore } from '../../stores/jigs.ts';
 
 export default class Drones {
