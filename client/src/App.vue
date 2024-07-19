@@ -1,5 +1,4 @@
 <script>
-import axios from "axios";
 import * as coreui from '@coreui/coreui'
 import { CButton } from '@coreui/vue'
 import { useJigsStore } from "./stores/jigs.ts";

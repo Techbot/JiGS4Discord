@@ -3,7 +3,7 @@
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs.ts';
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 export default class Switch extends Phaser.Physics.Arcade.Sprite {
   jigs: any;
 
@@ -31,8 +31,7 @@ export default class Switch extends Phaser.Physics.Arcade.Sprite {
     console.log('switchAnim_' + id);
     this.play('switchAnim_' + id + 'Off');
     if (id != 1) {
-      axios
-        .get("/flickswitch?_wrapper_format=drupal_ajax&id=" + id)
+      jigsGet("flickswitch?_wrapper_format=drupal_ajax&id=" + id)
         .then((response) => {
           console.log("why");
           scene.hydrateSwitches(id, response);

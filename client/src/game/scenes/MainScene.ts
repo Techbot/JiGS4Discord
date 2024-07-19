@@ -13,8 +13,7 @@ import Phaser from "phaser";
 import { Room, Client } from "colyseus.js";
 //import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs.ts';
-import axios, { AxiosResponse } from "axios";
-
+import {jigsGet} from '../../utils/JigsAPI.ts';
 import { discordSDK } from '../../utils/DiscordSDK.js';
 import { colyseusSDK } from '../../utils/Colyseus.js';
 import type { MyRoomState, Player } from '../../utils/MyRoom.ts';
@@ -128,10 +127,10 @@ export class MainScene extends Phaser.Scene {
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
     this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
+    const channelId = this.jigs.channelId;
     this.jigs.room = await colyseusSDK.joinOrCreate<MyRoomState>(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0),
       {
-        channelId: discordSDK.channelId, // join by channel ID
-
+        channelId: channelId
       });
 
     console.log("------------------room--------------------" + this.jigs.room);
@@ -194,8 +193,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   updatePlayer() {
-    axios
-      .get("states/myplayer?_wrapper_format=drupal_ajax&discordName=" + this.jigs.discordName)
+    jigsGet("states/myplayer?_wrapper_format=drupal_ajax&uid=" + this.jigs.uid)
       .then((response) => {
         //this.hydratePlayer(response);
         this.hydrater.hydratePlayer(response);
@@ -204,8 +202,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   updateMapState() {
-    axios
-      .get("states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
+    jigsGet("states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
       .then((response) => {
         this.hydrater.hydrateMap(response, 1);
         //this.hydrateMap(response, 1);

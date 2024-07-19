@@ -1,5 +1,4 @@
 <script>
-import axios from "axios";
 import { useJigsStore } from "../../stores/jigs.ts";
 export default {
   setup() {
@@ -31,14 +30,6 @@ export default {
       this.timestamp = dateTime;
     }
   }
-  // mounted() {
-  //    this.jigs = useJigsStore();
-  //   axios
-  //     .get("/mylogs?_wrapper_format=drupal_ajax")
-  //     .then((response) => {
-  //       this.jigs.playerLogs = response.data[0].value["playerLogs"];
-  //     });
-  // }
 }
 </script>
 

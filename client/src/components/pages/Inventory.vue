@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 import { useJigsStore } from "../../stores/jigs.ts";
 import * as coreui from '@coreui/coreui'
 import draggable from 'vuedraggable';
@@ -22,11 +22,6 @@ export default {
   },
   mounted() {
     this.jigs = useJigsStore();
-    /*     axios
-          .get("/mystorage?_wrapper_format=drupal_ajax")
-          .then((response) => {
-         // this.jigs.playerStorage = response.data[0].value["playerStorage"].storeItems;
-          }); */
     this.jigs.myInventory();
   },
   computed: {
@@ -42,16 +37,14 @@ export default {
       this.list = [{ name: "Edgard", id: id++ }];
     },
     addToStorage: function () {
-      axios
-        .get("/tostorage?_wrapper_format=drupal_ajax&id=" +  this.jigs.item)
+      jigsGet("tostorage?_wrapper_format=drupal_ajax&id=" +  this.jigs.item)
         .then((response) => {
           this.jigs.divideInventory(response);
         });
       console.log("Storage : " +  this.jigs.item);
     },
     addToBackpack: function () {
-      axios
-        .get("/tobackpack?_wrapper_format=drupal_ajax&id=" +  this.jigs.item)
+      jigsGet("tobackpack?_wrapper_format=drupal_ajax&id=" +  this.jigs.item)
         .then((response) => {
           this.jigs.divideInventory(response);
         });
