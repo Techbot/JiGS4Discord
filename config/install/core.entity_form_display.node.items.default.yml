@@ -3,10 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.node.items.body
+    - field.field.node.items.field_item_thumbnail
     - field.field.node.items.field_item_type
     - field.field.node.items.field_modifiers
+    - image.style.thumbnail
     - node.type.items
   module:
+    - image
     - paragraphs
     - path
     - text
@@ -30,6 +33,14 @@ content:
     weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_item_thumbnail:
+    type: image_image
+    weight: 26
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   field_item_type:
     type: options_select

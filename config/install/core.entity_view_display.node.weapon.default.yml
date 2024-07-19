@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.weapon.field_ammo_type
     - field.field.node.weapon.field_magazine
     - field.field.node.weapon.field_modifiers
+    - field.field.node.weapon.field_weapon_image
     - node.type.weapon
   module:
     - entity_reference_revisions
+    - image
     - text
     - user
 id: node.weapon.default
@@ -48,6 +50,17 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_weapon_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 6
     region: content
   links:
     settings: {  }

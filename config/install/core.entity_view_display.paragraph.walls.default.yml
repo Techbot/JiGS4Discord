@@ -14,7 +14,7 @@ mode: default
 content:
   field_height:
     type: number_integer
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -23,7 +23,7 @@ content:
     region: content
   field_width:
     type: number_integer
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       prefix_suffix: true

@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cutscene.field_dialog
+    - field.field.paragraph.cutscene.field_map_grid
+    - paragraphs.paragraphs_type.cutscene
+id: paragraph.cutscene.default
+targetEntityType: paragraph
+bundle: cutscene
+mode: default
+content:
+  field_dialog:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_map_grid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

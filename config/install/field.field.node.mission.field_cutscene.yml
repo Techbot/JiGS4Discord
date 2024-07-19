@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cutscene
+    - node.type.mission
+    - paragraphs.paragraphs_type.cutscene
+  module:
+    - entity_reference_revisions
+id: node.mission.field_cutscene
+field_name: field_cutscene
+entity_type: node
+bundle: mission
+label: Cutscene
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      cutscene: cutscene
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 29
+        enabled: false
+      boss:
+        weight: 30
+        enabled: false
+      buildings:
+        weight: 31
+        enabled: false
+      components:
+        weight: 32
+        enabled: false
+      crystal:
+        weight: 33
+        enabled: false
+      cutscene:
+        weight: 28
+        enabled: true
+      dialog_line:
+        weight: 34
+        enabled: false
+      fire:
+        weight: 35
+        enabled: false
+      fire_barrel:
+        weight: 36
+        enabled: false
+      folio:
+        weight: 37
+        enabled: false
+      items:
+        weight: 38
+        enabled: false
+      lever:
+        weight: 39
+        enabled: false
+      machine:
+        weight: 40
+        enabled: false
+      mega_mob:
+        weight: 41
+        enabled: false
+      mission_doors:
+        weight: 42
+        enabled: false
+      mission_stage:
+        weight: 43
+        enabled: false
+      missions:
+        weight: 44
+        enabled: false
+      mobs:
+        weight: 45
+        enabled: false
+      modifier:
+        weight: 46
+        enabled: false
+      npc:
+        weight: 47
+        enabled: false
+      portal:
+        weight: 48
+        enabled: false
+      reward_item:
+        weight: 49
+        enabled: false
+      rewards:
+        weight: 50
+        enabled: false
+      skill:
+        weight: 51
+        enabled: false
+      switches:
+        weight: 52
+        enabled: false
+      walls:
+        weight: 53
+        enabled: false
+      weapon:
+        weight: 54
+        enabled: false
+field_type: entity_reference_revisions

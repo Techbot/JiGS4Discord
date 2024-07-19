@@ -6,8 +6,11 @@ dependencies:
     - field.field.node.weapon.field_ammo_type
     - field.field.node.weapon.field_magazine
     - field.field.node.weapon.field_modifiers
+    - field.field.node.weapon.field_weapon_image
+    - image.style.thumbnail
     - node.type.weapon
   module:
+    - image
     - paragraphs
     - path
     - text
@@ -62,6 +65,14 @@ content:
       features:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+  field_weapon_image:
+    type: image_image
+    weight: 26
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   path:
     type: path

@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_game_state
     - field.field.user.user.field_sprite_sheet
     - field.field.user.user.user_picture
   module:
@@ -14,12 +13,6 @@ mode: default
 content:
   account:
     weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_game_state:
-    type: options_select
-    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }

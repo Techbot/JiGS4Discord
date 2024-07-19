@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: add_player_profile_to_player
+label: 'Add player profile to player'
+events:
+  -
+    event_name: 'rules_entity_insert:user--user'
+description: ''
+tags: {  }
+config_version: '3'
+expression:
+  id: rules_rule

@@ -13,7 +13,7 @@ mode: default
 content:
   field_name:
     type: entity_reference_label
-    label: inline
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }

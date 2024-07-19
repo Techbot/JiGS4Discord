@@ -9,11 +9,13 @@ dependencies:
     - field.field.node.npc.field_faction
     - field.field.node.npc.field_is_handler
     - field.field.node.npc.field_missions
+    - field.field.node.npc.field_npc_avatar
     - field.field.node.npc.field_occupation
     - field.field.node.npc.field_race
     - field.field.node.npc.field_sprite_sheet
     - node.type.npc
   module:
+    - image
     - text
     - user
 id: node.npc.teaser
@@ -22,24 +24,42 @@ bundle: npc
 mode: teaser
 content:
   body:
-    type: text_summary_or_trimmed
+    type: text_default
     label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    weight: 101
-    region: content
-  links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 3
+    region: content
+  field_bark:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_npc_avatar:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sprite_sheet:
+    type: number_unformatted
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
-  field_bark: true
   field_concerns: true
   field_faction: true
   field_is_handler: true
   field_missions: true
   field_occupation: true
   field_race: true
-  field_sprite_sheet: true
+  links: true

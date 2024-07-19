@@ -2,12 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - flag
     - profile
 id: player
 label: Player
 weight: 4
 is_admin: null
 permissions:
+  - 'flag mission_complete'
   - 'view any faction profile'
   - 'view any player profile'
   - 'view any profile'

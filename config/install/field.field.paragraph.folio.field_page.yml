@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_page
-    - node.type.page
+    - node.type.meme
     - paragraphs.paragraphs_type.folio
 id: paragraph.folio.field_page
 field_name: field_page
@@ -19,10 +19,10 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      page: page
+      meme: meme
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: page
 field_type: entity_reference

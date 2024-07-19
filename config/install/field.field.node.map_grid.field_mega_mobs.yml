@@ -1,0 +1,90 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mega_mobs
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.mega_mob
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_mega_mobs
+field_name: field_mega_mobs
+entity_type: node
+bundle: map_grid
+label: 'Mega Mob'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      mega_mob: mega_mob
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 22
+        enabled: false
+      boss:
+        weight: 23
+        enabled: false
+      buildings:
+        weight: 24
+        enabled: false
+      components:
+        weight: 25
+        enabled: false
+      crystal:
+        weight: 26
+        enabled: false
+      dialog_line:
+        weight: 27
+        enabled: false
+      folio:
+        weight: 28
+        enabled: false
+      items:
+        weight: 29
+        enabled: false
+      mega_mob:
+        weight: 30
+        enabled: true
+      mission_stage:
+        weight: 31
+        enabled: false
+      missions:
+        weight: 32
+        enabled: false
+      mobs:
+        weight: 33
+        enabled: false
+      modifier:
+        weight: 34
+        enabled: false
+      npc:
+        weight: 35
+        enabled: false
+      portal:
+        weight: 36
+        enabled: false
+      reward_item:
+        weight: 37
+        enabled: false
+      rewards:
+        weight: 38
+        enabled: false
+      skill:
+        weight: 39
+        enabled: false
+      switches:
+        weight: 40
+        enabled: false
+      walls:
+        weight: 41
+        enabled: false
+      weapon:
+        weight: 42
+        enabled: false
+field_type: entity_reference_revisions

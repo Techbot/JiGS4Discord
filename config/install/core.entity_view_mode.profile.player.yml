@@ -5,5 +5,6 @@ dependencies:
     - profile
 id: profile.player
 label: Player
+description: ''
 targetEntityType: profile
 cache: true

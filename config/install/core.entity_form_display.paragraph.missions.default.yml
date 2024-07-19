@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.missions.field_mission
-    - field.field.paragraph.missions.field_mission_stage
     - paragraphs.paragraphs_type.missions
 id: paragraph.missions.default
 targetEntityType: paragraph
@@ -18,13 +17,6 @@ content:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_mission_stage:
-    type: number
-    weight: 1
-    region: content
-    settings:
       placeholder: ''
     third_party_settings: {  }
 hidden:

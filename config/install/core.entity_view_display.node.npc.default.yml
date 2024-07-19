@@ -8,11 +8,13 @@ dependencies:
     - field.field.node.npc.field_faction
     - field.field.node.npc.field_is_handler
     - field.field.node.npc.field_missions
+    - field.field.node.npc.field_npc_avatar
     - field.field.node.npc.field_occupation
     - field.field.node.npc.field_race
     - field.field.node.npc.field_sprite_sheet
     - node.type.npc
   module:
+    - image
     - text
     - user
 id: node.npc.default
@@ -25,14 +27,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
   field_bark:
     type: basic_string
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 110
+    weight: 3
     region: content
   field_concerns:
     type: entity_reference_label
@@ -40,7 +42,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 115
+    weight: 8
     region: content
   field_faction:
     type: entity_reference_label
@@ -48,7 +50,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 109
+    weight: 4
     region: content
   field_is_handler:
     type: boolean
@@ -58,15 +60,26 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 113
+    weight: 6
     region: content
   field_missions:
     type: entity_reference_label
-    label: inline
+    label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 112
+    weight: 10
+    region: content
+  field_npc_avatar:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_occupation:
     type: entity_reference_label
@@ -74,7 +87,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 114
+    weight: 7
     region: content
   field_race:
     type: entity_reference_label
@@ -82,7 +95,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 116
+    weight: 9
     region: content
   field_sprite_sheet:
     type: number_integer
@@ -91,11 +104,11 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 111
+    weight: 5
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden: {  }

@@ -14,7 +14,7 @@ mode: default
 content:
   field_page:
     type: entity_reference_autocomplete
-    weight: 0
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
@@ -24,7 +24,7 @@ content:
     third_party_settings: {  }
   field_sprite:
     type: string_textfield
-    weight: 8
+    weight: 3
     region: content
     settings:
       size: 60
@@ -32,14 +32,14 @@ content:
     third_party_settings: {  }
   field_x:
     type: number
-    weight: 6
+    weight: 0
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_y:
     type: number
-    weight: 7
+    weight: 1
     region: content
     settings:
       placeholder: ''

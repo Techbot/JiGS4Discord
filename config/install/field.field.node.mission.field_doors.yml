@@ -1,0 +1,105 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_doors
+    - node.type.mission
+    - paragraphs.paragraphs_type.mission_doors
+  module:
+    - entity_reference_revisions
+id: node.mission.field_doors
+field_name: field_doors
+entity_type: node
+bundle: mission
+label: Doors
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      mission_doors: mission_doors
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 28
+        enabled: false
+      boss:
+        weight: 29
+        enabled: false
+      buildings:
+        weight: 30
+        enabled: false
+      components:
+        weight: 31
+        enabled: false
+      crystal:
+        weight: 32
+        enabled: false
+      dialog_line:
+        weight: 33
+        enabled: false
+      fire:
+        weight: 34
+        enabled: false
+      fire_barrel:
+        weight: 35
+        enabled: false
+      folio:
+        weight: 36
+        enabled: false
+      items:
+        weight: 37
+        enabled: false
+      lever:
+        weight: 38
+        enabled: false
+      machine:
+        weight: 39
+        enabled: false
+      mega_mob:
+        weight: 40
+        enabled: false
+      mission_doors:
+        weight: 27
+        enabled: true
+      mission_stage:
+        weight: 41
+        enabled: false
+      missions:
+        weight: 42
+        enabled: false
+      mobs:
+        weight: 43
+        enabled: false
+      modifier:
+        weight: 44
+        enabled: false
+      npc:
+        weight: 45
+        enabled: false
+      portal:
+        weight: 46
+        enabled: false
+      reward_item:
+        weight: 47
+        enabled: false
+      rewards:
+        weight: 48
+        enabled: false
+      skill:
+        weight: 49
+        enabled: false
+      switches:
+        weight: 50
+        enabled: false
+      walls:
+        weight: 51
+        enabled: false
+      weapon:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

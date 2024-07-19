@@ -12,13 +12,16 @@ dependencies:
     - field.field.node.map_grid.field_layer_4
     - field.field.node.map_grid.field_layer_5
     - field.field.node.map_grid.field_map_height
+    - field.field.node.map_grid.field_map_image
     - field.field.node.map_grid.field_map_width
+    - field.field.node.map_grid.field_mapgrid_boss
+    - field.field.node.map_grid.field_mega_mobs
+    - field.field.node.map_grid.field_mission_accepted
     - field.field.node.map_grid.field_mobs
     - field.field.node.map_grid.field_npc
     - field.field.node.map_grid.field_portals
     - field.field.node.map_grid.field_rewards
     - field.field.node.map_grid.field_soundtrack
-    - field.field.node.map_grid.field_switches
     - field.field.node.map_grid.field_tiled
     - field.field.node.map_grid.field_walls
     - node.type.map_grid
@@ -28,7 +31,12 @@ id: node.map_grid.label
 targetEntityType: node
 bundle: map_grid
 mode: label
-content: {  }
+content:
+  flag_map_grid_unlocked:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
 hidden:
   body: true
   field_city: true
@@ -39,13 +47,16 @@ hidden:
   field_layer_4: true
   field_layer_5: true
   field_map_height: true
+  field_map_image: true
   field_map_width: true
+  field_mapgrid_boss: true
+  field_mega_mobs: true
+  field_mission_accepted: true
   field_mobs: true
   field_npc: true
   field_portals: true
   field_rewards: true
   field_soundtrack: true
-  field_switches: true
   field_tiled: true
   field_walls: true
   links: true

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dialog_mission_complete
+    - node.type.dialog
+    - node.type.mission
+id: node.mission.field_dialog_mission_complete
+field_name: field_dialog_mission_complete
+entity_type: node
+bundle: mission
+label: 'Dialog Mission Complete'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      dialog: dialog
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

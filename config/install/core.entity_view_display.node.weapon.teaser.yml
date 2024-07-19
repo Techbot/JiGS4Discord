@@ -7,8 +7,10 @@ dependencies:
     - field.field.node.weapon.field_ammo_type
     - field.field.node.weapon.field_magazine
     - field.field.node.weapon.field_modifiers
+    - field.field.node.weapon.field_weapon_image
     - node.type.weapon
   module:
+    - image
     - text
     - user
 id: node.weapon.teaser
@@ -22,12 +24,23 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
-    weight: 101
+    weight: 2
+    region: content
+  field_weapon_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   field_ammo_type: true

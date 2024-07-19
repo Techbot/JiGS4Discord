@@ -5,8 +5,9 @@ id: player
 label: Player
 display_label: ''
 multiple: false
-registration: false
+registration: true
 roles:
+  authenticated: authenticated
   player: player
 allow_revisions: false
 new_revision: false

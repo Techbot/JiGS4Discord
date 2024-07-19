@@ -25,14 +25,19 @@ content:
     type: entity_reference_revisions_entity_view
     label: hidden
     settings:
-      view_mode: default
+      view_mode: horizontal
       link: ''
     third_party_settings: {  }
     weight: 1
     region: content
-  links:
+  flag_dialogue:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden: {  }

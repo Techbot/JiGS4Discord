@@ -22,6 +22,17 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden:
-  field_faction_type: true
-  links: true
+  field_faction_type:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

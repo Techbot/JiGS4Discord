@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_emerald
+    - profile.type.player
+id: profile.player.field_emerald
+field_name: field_emerald
+entity_type: profile
+bundle: player
+label: Emerald
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

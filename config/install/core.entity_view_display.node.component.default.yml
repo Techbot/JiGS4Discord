@@ -3,8 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.node.component.body
+    - field.field.node.component.field_component_image
     - node.type.component
   module:
+    - image
     - text
     - user
 id: node.component.default
@@ -17,11 +19,22 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
+    region: content
+  field_component_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 2
     region: content
 hidden: {  }

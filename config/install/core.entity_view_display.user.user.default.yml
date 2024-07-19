@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_game_state
     - field.field.user.user.field_sprite_sheet
     - field.field.user.user.user_picture
   module:
@@ -16,8 +15,8 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: default
-      link: true
+      view_mode: player
+      link: false
     third_party_settings: {  }
     weight: 2
     region: content
@@ -36,6 +35,5 @@ content:
     weight: 1
     region: content
 hidden:
-  field_game_state: true
   field_sprite_sheet: true
   user_picture: true

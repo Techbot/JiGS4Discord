@@ -3,9 +3,11 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.profile.player
+    - field.field.profile.player.field_amethyst
     - field.field.profile.player.field_charisma
     - field.field.profile.player.field_credits
     - field.field.profile.player.field_dexterity
+    - field.field.profile.player.field_emerald
     - field.field.profile.player.field_endurance
     - field.field.profile.player.field_energy
     - field.field.profile.player.field_game_state
@@ -18,12 +20,14 @@ dependencies:
     - field.field.profile.player.field_map
     - field.field.profile.player.field_map_grid
     - field.field.profile.player.field_missions
-    - field.field.profile.player.field_missions_completed
     - field.field.profile.player.field_nanites
     - field.field.profile.player.field_psi
     - field.field.profile.player.field_right_weapon
+    - field.field.profile.player.field_ruby
+    - field.field.profile.player.field_sapphire
     - field.field.profile.player.field_skill
     - field.field.profile.player.field_strength
+    - field.field.profile.player.field_topaz
     - field.field.profile.player.field_wins
     - field.field.profile.player.field_x
     - field.field.profile.player.field_xp
@@ -36,6 +40,13 @@ targetEntityType: profile
 bundle: player
 mode: player
 content:
+  field_amethyst:
+    type: number
+    weight: 19
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_charisma:
     type: number
     weight: 10
@@ -57,6 +68,13 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_emerald:
+    type: number
+    weight: 18
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_endurance:
     type: number
     weight: 9
@@ -73,7 +91,7 @@ content:
     third_party_settings: {  }
   field_game_state:
     type: options_select
-    weight: 24
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -93,7 +111,7 @@ content:
     third_party_settings: {  }
   field_inventory:
     type: paragraphs
-    weight: 22
+    weight: 26
     region: content
     settings:
       title: Paragraph
@@ -126,27 +144,39 @@ content:
     third_party_settings: {  }
   field_losses:
     type: number
-    weight: 19
+    weight: 24
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_map:
     type: number
-    weight: 25
+    weight: 1
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_map_grid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 0
     region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_missions:
+    type: entity_reference_paragraphs
+    weight: 28
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
     third_party_settings: {  }
   field_nanites:
     type: number
@@ -169,9 +199,23 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_ruby:
+    type: number
+    weight: 22
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_sapphire:
+    type: number
+    weight: 20
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_skill:
     type: paragraphs
-    weight: 20
+    weight: 25
     region: content
     settings:
       title: Paragraph
@@ -195,9 +239,16 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_topaz:
+    type: number
+    weight: 21
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_wins:
     type: number
-    weight: 18
+    weight: 23
     region: content
     settings:
       placeholder: ''
@@ -224,6 +275,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  field_missions: true
-  field_missions_completed: true
   is_default: true

@@ -11,17 +11,22 @@ dependencies:
     - field.field.node.map_grid.field_layer_4
     - field.field.node.map_grid.field_layer_5
     - field.field.node.map_grid.field_map_height
+    - field.field.node.map_grid.field_map_image
     - field.field.node.map_grid.field_map_width
+    - field.field.node.map_grid.field_mapgrid_boss
+    - field.field.node.map_grid.field_mega_mobs
+    - field.field.node.map_grid.field_mission_accepted
     - field.field.node.map_grid.field_mobs
     - field.field.node.map_grid.field_npc
     - field.field.node.map_grid.field_portals
     - field.field.node.map_grid.field_rewards
     - field.field.node.map_grid.field_soundtrack
-    - field.field.node.map_grid.field_switches
     - field.field.node.map_grid.field_tiled
     - field.field.node.map_grid.field_walls
+    - image.style.thumbnail
     - node.type.map_grid
   module:
+    - image
     - paragraphs
     - path
     - text
@@ -32,7 +37,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 6
+    weight: 7
     region: content
     settings:
       rows: 9
@@ -49,7 +54,7 @@ content:
     third_party_settings: {  }
   field_city:
     type: entity_reference_autocomplete
-    weight: 11
+    weight: 12
     region: content
     settings:
       match_operator: CONTAINS
@@ -59,7 +64,79 @@ content:
     third_party_settings: {  }
   field_folio:
     type: paragraphs
-    weight: 103
+    weight: 24
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: folio
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_layer_1:
+    type: options_buttons
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_layer_2:
+    type: options_buttons
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_layer_3:
+    type: options_buttons
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_layer_4:
+    type: options_buttons
+    weight: 17
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_layer_5:
+    type: options_buttons
+    weight: 18
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_map_height:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_map_image:
+    type: image_image
+    weight: 6
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_map_width:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_mapgrid_boss:
+    type: paragraphs
+    weight: 22
     region: content
     settings:
       title: Paragraph
@@ -75,53 +152,39 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-  field_layer_1:
-    type: options_buttons
-    weight: 13
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_layer_2:
-    type: options_buttons
-    weight: 14
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_layer_3:
-    type: options_buttons
-    weight: 15
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_layer_4:
-    type: options_buttons
-    weight: 16
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_layer_5:
-    type: options_buttons
-    weight: 17
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_map_height:
-    type: number
-    weight: 9
+  field_mega_mobs:
+    type: paragraphs
+    weight: 26
     region: content
     settings:
-      placeholder: ''
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mega_mob
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
     third_party_settings: {  }
-  field_map_width:
-    type: number
-    weight: 10
+  field_mission_accepted:
+    type: entity_reference_autocomplete
+    weight: 27
     region: content
     settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_mobs:
     type: paragraphs
-    weight: 20
+    weight: 21
     region: content
     settings:
       title: Paragraph
@@ -140,7 +203,7 @@ content:
     third_party_settings: {  }
   field_npc:
     type: paragraphs
-    weight: 18
+    weight: 19
     region: content
     settings:
       title: Paragraph
@@ -159,7 +222,7 @@ content:
     third_party_settings: {  }
   field_portals:
     type: paragraphs
-    weight: 12
+    weight: 13
     region: content
     settings:
       title: Paragraph
@@ -178,7 +241,7 @@ content:
     third_party_settings: {  }
   field_rewards:
     type: paragraphs
-    weight: 19
+    weight: 20
     region: content
     settings:
       title: Paragraph
@@ -197,7 +260,7 @@ content:
     third_party_settings: {  }
   field_soundtrack:
     type: entity_reference_autocomplete
-    weight: 104
+    weight: 25
     region: content
     settings:
       match_operator: CONTAINS
@@ -205,34 +268,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_switches:
-    type: paragraphs
-    weight: 102
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-      features:
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
   field_tiled:
     type: number
-    weight: 8
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_walls:
     type: paragraphs
-    weight: 101
+    weight: 23
     region: content
     settings:
       title: Paragraph
@@ -267,7 +312,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 8
     region: content
     settings:
       display_label: true

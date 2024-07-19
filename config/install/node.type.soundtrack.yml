@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: Soundtrack
 type: soundtrack
-description: ''
+description: 'Music to murder by'
 help: ''
 new_revision: true
 preview_mode: 1

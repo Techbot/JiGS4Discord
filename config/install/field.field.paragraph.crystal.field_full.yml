@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_full
+    - paragraphs.paragraphs_type.crystal
+id: paragraph.crystal.field_full
+field_name: field_full
+entity_type: paragraph
+bundle: crystal
+label: Full
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

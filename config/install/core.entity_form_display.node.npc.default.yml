@@ -8,11 +8,14 @@ dependencies:
     - field.field.node.npc.field_faction
     - field.field.node.npc.field_is_handler
     - field.field.node.npc.field_missions
+    - field.field.node.npc.field_npc_avatar
     - field.field.node.npc.field_occupation
     - field.field.node.npc.field_race
     - field.field.node.npc.field_sprite_sheet
+    - image.style.thumbnail
     - node.type.npc
   module:
+    - image
     - path
     - text
 id: node.npc.default
@@ -62,19 +65,27 @@ content:
     third_party_settings: {  }
   field_is_handler:
     type: options_buttons
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_missions:
     type: entity_reference_autocomplete
-    weight: 14
+    weight: 15
     region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_npc_avatar:
+    type: image_image
+    weight: 14
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   field_occupation:
     type: options_select

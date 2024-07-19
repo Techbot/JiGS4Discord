@@ -26,67 +26,67 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 0
     region: content
   field_city_climate:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 111
+    weight: 5
     region: content
   field_city_crime_level:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 107
+    weight: 1
     region: content
   field_city_description:
     type: text_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 115
+    weight: 8
     region: content
   field_city_education_level:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 108
+    weight: 2
     region: content
   field_city_politics:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 113
+    weight: 7
     region: content
   field_city_pollution:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 110
+    weight: 4
     region: content
   field_city_population:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 109
+    weight: 3
     region: content
   field_city_technology:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 112
+    weight: 6
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 9
     region: content
 hidden: {  }

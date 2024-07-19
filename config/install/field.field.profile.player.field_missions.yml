@@ -11,7 +11,7 @@ id: profile.player.field_missions
 field_name: field_missions
 entity_type: profile
 bundle: player
-label: 'Missions In Progress'
+label: Missions
 description: ''
 required: false
 translatable: false
@@ -27,14 +27,38 @@ settings:
       ammunition:
         weight: 16
         enabled: false
+      boss:
+        weight: 25
+        enabled: false
       buildings:
         weight: 17
         enabled: false
       components:
         weight: 18
         enabled: false
+      crystal:
+        weight: 28
+        enabled: false
+      cutscene:
+        weight: 29
+        enabled: false
+      dialog_line:
+        weight: 30
+        enabled: false
+      folio:
+        weight: 31
+        enabled: false
       items:
         weight: 19
+        enabled: false
+      mapgrid_boss:
+        weight: 34
+        enabled: false
+      mega_mob:
+        weight: 33
+        enabled: false
+      mission_doors:
+        weight: 35
         enabled: false
       mission_stage:
         weight: 20
@@ -62,6 +86,12 @@ settings:
         enabled: false
       skill:
         weight: 27
+        enabled: false
+      switches:
+        weight: 44
+        enabled: false
+      walls:
+        weight: 45
         enabled: false
       weapon:
         weight: 28
