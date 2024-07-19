@@ -2,15 +2,16 @@ langcode: en
 status: true
 dependencies:
   module:
-    - comment
-    - node
-id: node.comment
-field_name: comment
-entity_type: node
-type: comment
+    - user
+id: user.field_discord_id
+field_name: field_discord_id
+entity_type: user
+type: string
 settings:
-  comment_type: comment
-module: comment
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
 locked: false
 cardinality: 1
 translatable: true
