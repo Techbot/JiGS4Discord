@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Faction Type'
+vid: faction_type
+description: ''
+weight: 0

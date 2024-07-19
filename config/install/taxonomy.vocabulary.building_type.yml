@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Building Type'
+vid: building_type
+description: ''
+weight: 0

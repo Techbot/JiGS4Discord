@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: player
+label: Player
+display_label: ''
+multiple: false
+registration: false
+roles:
+  player: player
+allow_revisions: false
+new_revision: false

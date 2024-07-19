@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: player
+label: Player
+weight: 4
+is_admin: null
+permissions:
+  - 'view any faction profile'
+  - 'view any player profile'
+  - 'view any profile'
+  - 'view own faction profile'
+  - 'view own player profile'
+  - 'view own profile'
