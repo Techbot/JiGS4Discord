@@ -112,6 +112,7 @@ Steps to bundle the client into Drupal and deploy the servers to a cloud provide
   * URL Mappings:
     * / = Drupal URL
     * /api = Server URL
+    * OAuth2: Redirects = Server URL
 
 ## World Setup
 * Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling
