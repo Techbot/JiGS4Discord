@@ -9,11 +9,12 @@ var p2 = require('p2');
 export class Layer {
   mapJson: any;
 
-  async load(nodeName: string, share) {
+  async load(nodeName: string, share: any) {
     var cityName = nodeName.split("-")[0];
     var cityNumber = nodeName.split("-")[1];
     try {
-      const data = require(`../../../../../assets/cities/json/` + cityName + cityNumber + `.json`);
+      // @TODO This relative path is insane
+      const data = require(`../../../../../../assets/cities/json/` + cityName + cityNumber + `.json`);
       this.mapJson = data;
       this.make(nodeName, share)
       return data;
@@ -23,7 +24,7 @@ export class Layer {
     }
   }
 
-  make(nodeName: any, share) {
+  make(nodeName: any, share: any) {
     var layerData = this.mapJson.layers[0].data;
     //console.log('activated');
     var self = this;

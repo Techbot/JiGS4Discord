@@ -1,216 +1,140 @@
-var mysql = require("mysql2");
-import config from '../services/db';
+import {drupalGet, drupalPost, drupalPatch} from "../services/drupal";
 
-var con = mysql.createPool({
-  connectionLimit: 10,
-  host: config.host,
-  user: config.user,
-  password: config.password,
-  database: config.database
-});
-
-function getPlayer_old(player) {
-  return new Promise(function (resolve, reject) {
-    con.query(
-      `SELECT
-      users_field_data.name,
-      users_field_data.login,
-      profile.profile_id,
-      profile__field_x.field_x_value,
-      profile__field_y.field_y_value,
-      profile__field_health.field_health_value,
-      profile__field_missions.field_missions_target_id as missions
-      FROM users_field_data
-      LEFT JOIN profile
-      ON  profile.uid                     =  users_field_data.uid
-      AND type                            = 'player'
-      INNER JOIN profile__field_x
-      ON  profile__field_x.entity_id      =  profile.profile_id
-      INNER JOIN profile__field_y
-      ON  profile__field_y.entity_id      =  profile.profile_id
-      INNER JOIN profile__field_health
-      ON  profile__field_health.entity_id =  profile.profile_id
-      LEFT JOIN profile__field_missions
-      ON profile__field_missions.entity_id = profile.profile_id
-      WHERE  users_field_data.uid         = ` + player
-      ,
-      function (err, result) {
-        if (err) throw err;
-        resolve(result);
-      }
-    );
-  })
+async function getPlayer(uuid: string) {
+  const result = await drupalGet(`/user/user/${uuid}`);
+  if(result.data) {
+    return result.data;
+  }
+  return null;
 }
 
-function getPlayer(player: string) {
-  return new Promise(function (resolve, reject) {
-    con.query(
-      `SELECT
-      players.player,
-      players.x,
-      players.y,
-      players.health
-      FROM players
-      WHERE  players.player         = '` + player + `'`
-      ,
-      function (err, result) {
-        if (err) throw err;
-        resolve(result);
-      }
-    );
-  })
+async function getPlayerProfile(uuid: string) {
+  const result = await drupalGet(`/profile/player/?filter[uid.id][value]=${uuid}`);
+  if(result.data && result.data[0]) {
+    return result.data[0];
+  }
+  return null;
 }
 
-async function checkNewPlayer(player) {
+async function getDiscordPlayer(playerId: string) {
+  const result = await drupalGet(`/user/user/?filter[field_discord_id]=${playerId}`);
+  if(result.data && result.data[0]) {
+    return result.data[0];
+  }
+  return null;
+}
 
-  console.log('Check New Player id ' + player.id);
-  console.log('Check New Player username' + player.username);
-
-  const playerArray = await getAllPlayers();
-
-  console.log(playerArray);
-
-  if (playerArray.indexOf(player.username) >= 0) {
-
-    console.log('player exists ' + player.username);
-
-    return;
-
+async function getOrCreateDiscordUser(user: any) {
+  const playerCheck = await getDiscordPlayer(user.id);
+  if (playerCheck) {
+    return playerCheck;
   } else {
-    console.log('player does not exist ' + player.username);
-    savePlayer(player)
-  }
-
-}
-
-function getAllPlayers() {
-
-  console.log('retrieving all players');
-
-  return new Promise(function (resolve, reject) {
-    con.query(
-      `SELECT players.player
-      FROM players`
-      ,
-      function (err, result) {
-        const playerArray = new Array;
-        if (err) throw err;
-
-        result.forEach((element: any) => {
-          playerArray.push(element.player)
-        });
-
-        resolve(playerArray);
-      }
-    );
-  })
-}
-
-
-function savePlayer(player: { id: string; username: string; }) {
-
-  console.log('saving player' + player.username);
-
-  con.query(
-    `INSERT INTO players (player, mapgrid) VALUES ('` + player.username + `', 1)`,
-    function (err, result, fields) {
-      if (err) throw err;
-      return true;
+    const player = await createPlayer(user);
+    if(player.data) {
+      return player.data;
     }
-  );
-}
-
-
-
-function updateFlag(flag, player, key) {
-  return new Promise(function (resolve, reject) {
-
-    var http = require('https');
-    var options = {
-      host: 'localhost',
-      port: 80,
-      path: '/updateFlag?_wrapper_format=drupal_ajax&id=' + flag + 'id=' + player + 'key=' + key
-    };
-    var req = http.get(options, function (response) {
-      // handle the response
-      var res_data = '';
-      response.on('data', function (chunk) {
-        res_data += chunk;
-      });
-      response.on('end', function () {
-        console.log(res_data);
-      });
-    });
-    req.on('error', function (err) {
-      console.log("Request error: " + err.message);
-    });
-  })
-}
-
-function updateMapOld(id, map) {
-
-  con.query(
-    `UPDATE profile__field_map_grid SET field_map_grid_target_id = ` +
-    map + ` WHERE profile__field_map_grid.entity_id = ` + id,
-    function (err, result, fields) {
-      if (err) throw err;
-      return true;
-    }
-  );
-}
-
-
-function updateMap(username: string, map: number) {
-
-  con.query(
-    `UPDATE players SET mapgrid = ` +
-    map + ` WHERE players.player = '` + username + `'`,
-    function (err, result, fields) {
-      if (err) throw err;
-      return true;
-    }
-  );
-}
-
-function updatePlayerStats(id: string, stat: string | undefined, value: string, replace: any) {
-
-  console.log("id:" + id);
-  console.log("stat:" + stat);
-
-  if (stat == undefined) {
-    return;
+    return null;
   }
+}
 
-  if (replace) {
-
-    con.query(
-      `UPDATE players` +
-      ` SET ` + stat + ` = ` + value +
-      ` WHERE players.player = '` + id +`'`,
-      function (err, result, fields) {
-        if (err) throw err;
-        return true;
-      }
-    );
-
-  } else {
-
-    con.query(
-      `UPDATE players` +
-      ` SET ` + stat + ` = ` + stat + ` + ` + value +
-      ` WHERE players.player = '` + id + `'`,
-      function (err, result, fields) {
-        if (err) throw err;
-        return true;
-      }
-    );
+async function createPlayer(player: { id: string; username: string; }) {
+  // Hardcoded role uuid is just a fallback
+  let roleuuid = "72d6b608-4620-461c-ad1e-6bc74a055d0c";
+  const role = await drupalGet('/user_role/user_role?filter[label]=player');
+  if(role.data && role.data[0]) {
+    roleuuid = role.data[0].id;
   }
+  const newPlayer = await drupalPost('/user/user', {
+    "data": {
+      "type": "user--user",
+      "attributes": {
+        "name": player.username,
+        "status": "1",
+        "field_discord_id": {
+          "value": player.id
+        }
+      },
+      "relationships": {
+        "roles": {
+          "data": {
+            "type": "user_role--user_role",
+            "id": roleuuid
+          }
+        }
+      }
+    }
+  });
+  if(newPlayer.data) {
+    try {
+      await createPlayerProfile(newPlayer.data.id);
+      return newPlayer;
+    } catch (e) {
+      console.error('Failed to create player profile', e);
+    }
+  }
+}
+
+async function createPlayerProfile(uuid: string) {
+  console.log("creating player profile");
+  const profile = await drupalPost('/profile/player', {
+    "data": {
+      "type": "profile--player",
+      "relationships": {
+        "uid": {
+          "data": {
+            "type": "user--user",
+            "id": uuid
+          }
+        }
+      }
+    }
+  });
+}
+
+// @TODO still not working
+async function updateMap(uuid: string, map: string) {
+  return await drupalPatch('/profile/player/' + uuid, {
+    "data": {
+      "type": "profile--player",
+      "id": uuid,
+      "relationships": {
+        "field_map_grid": {
+          "data": {
+            "type": "node--map_grid",
+            "id": map // uuid
+          }
+        }
+      }
+    }
+  });
+}
+
+// @TODO still not working or complete
+async function updatePlayerStats(uuid: string, stat: string | undefined, value: string, replace: any) {
+  const statField = `field_${stat}`;
+  const statVal = 0; // Placeholder, replace with actual stat value
+  const data: any = {
+    "type": "profile--player",
+    "id": uuid,
+    "attributes": {}
+  };
+  data.attributes[statField] = { "value": (replace) ? value : statVal + value };
+  return await drupalPatch('/profile/player/' + uuid, {
+    data
+  });
+}
+
+async function updatePlayerSwitch(uuid:string) {
+  // @TODO placeholder, not sure what this is supposed to do
+  // Called from switchCollider.ts
 }
 
 module.exports = {
   getPlayer,
+  getPlayerProfile,
+  getDiscordPlayer,
   updateMap,
   updatePlayerStats,
-  updateFlag,
-  checkNewPlayer
+  updatePlayerSwitch,
+  getOrCreateDiscordUser
 }

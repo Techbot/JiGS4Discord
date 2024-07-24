@@ -4,21 +4,17 @@ import {jigsGet} from '../utils/JigsAPI.ts';
 
 export const useJigsStore = defineStore("jigs", {
   state: () => ({
-    uuid: "",
-    uid: 0,
     channelId: "1",
 
     room: {},
 
     todos: [],
 
-    playerName: "Blank",
-
-    discordName: "Blank",
-
-    playerId: 0,
-
-    profileId: 0,
+    playerName: "Guest",
+    playerUuid: "",       // uuid for user in drupal db
+    playerId: 0,          // internal uid for user in drupal db
+    profileUuid: "",      // uuid for profile node in drupal db
+    profileId: 0,         // internal nid for profile node in drupal db
 
     debug: 0,
 

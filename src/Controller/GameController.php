@@ -12,7 +12,6 @@ use Drupal\jigs\Game\Faction;
 use Drupal\jigs\Game\Round;
 use Drupal\jigs\Game\Weapon;
 use Drupal\jigs\Entities\Player;
-use Drupal\jigs\Entities\DiscordPlayer;
 use Drupal\jigs\Entities\MapGrid;
 use Drupal\jigs\Entities\Game;
 use Drupal\jigs\Entities\City;
@@ -65,7 +64,6 @@ class GameController extends ControllerBase
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
     //$player                   .= new Player();
-    //$player                     = new DiscordPlayer($discordName = $request->query->get('discordName'));
     //$responseData['player']     =  $player->create();
 
     $gameConfig                 = new Game();
@@ -91,9 +89,8 @@ class GameController extends ControllerBase
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
-    //$player                   .= new Player();
-    $player                     = new DiscordPlayer($discordName = $request->query->get('discordName'));
-    $responseData['player']     =  $player->create();
+    $player                     = new Player($request->query->get('uid'));
+    $responseData['player']     = $player->create();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }

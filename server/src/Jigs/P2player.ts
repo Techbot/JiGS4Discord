@@ -11,17 +11,20 @@ var playerModel = require('../models/player.ts');
 
 export class P2player {
   Body: any;
-  discordName: any;
+  playerUuid: any;
 
-  constructor(discordName:string) {
-    this.discordName = discordName;
+  constructor(uuid:string) {
+    this.playerUuid = uuid;
   }
-
-  async load(id: any, share: any, player) {
-    await playerModel.getPlayer(id).then((result: any) => {
+  async load(share: any, player: any) {
+    try {
+      const profile: any = await playerModel.getPlayerProfile(this.playerUuid);
+      player.profileId = profile.attributes.drupal_internal__profile_id;
+      player.profileUuid = profile.id;
       this.Body = new p2.Body({
         mass: 1,
-        //  position: [result[0].field_x_value, result[0].field_y_value],
+        position: [profile.attributes.field_x, profile.attributes.field_y],
+        health: profile.attributes.field_health,
         angle: 0,
         type: p2.Body.DYNAMIC,
         collisionResponse: true,
@@ -31,20 +34,15 @@ export class P2player {
       const playerShape = new p2.Box({ width: 32, height: 32 });
       playerShape.collisionGroup = share.COL_PLAYER;
       playerShape.collisionMask = share.COL_ENEMY | share.COL_GROUND;
-      this.Body.discordName = this.discordName;
-    //  this.Body.profileId = result[0].profile_id;
       this.Body.isPlayer = true;
-      this.Body.position[0] = result[0].x;
-      this.Body.position[1] = result[0].y;
-      this.Body.health = result[0].health;
-     // this.Body.flags = result[0].flags;
+      // @TODO Figure out how to put this line back
+      // this.Body.flags = result[0].flags;
       this.Body.addShape(playerShape);
       player.x = this.Body.position[0];
       player.y = this.Body.position[1];
-
-    }).catch(function () {
-      console.log('---------------------Player Error---------------------');
-    });
+    } catch(error: any) {
+      console.log("P2player Error", error);
+    }
   }
 
   update(input: InputData,

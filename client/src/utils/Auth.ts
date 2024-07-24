@@ -40,6 +40,11 @@ export async function authenticate() {
     body: JSON.stringify({ code, }),
   });
 
+  if(data.error) {
+    // Throw an error
+    throw new Error(data.error);
+  }
+
   //
   // Authenticate with the token, so we can use the Discord API
   // This is required to listen to SPEAKING events
@@ -47,4 +52,27 @@ export async function authenticate() {
   await discordSDK.commands.authenticate({ access_token: data.access_token, });
 
   return data;
+}
+
+export async function authenticateLocal(playerId: string) {
+  try {
+    console.log("Authenticating Local");
+    // Attempt to authenticate with this player id
+    const { data } = await colyseusSDK.http.post('/local_token', {
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify({ playerId, }),
+    });
+
+    console.log("data", data);
+
+    if(data.error) {
+      // Throw an error
+      throw new Error(data.error);
+    }
+
+    return data;
+  } catch (e:any) {
+    console.log("Caught authenticateLocal error", e);
+  }
+
 }

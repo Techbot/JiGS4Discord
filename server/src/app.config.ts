@@ -2,14 +2,14 @@ import config from "@colyseus/tools";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { auth, JWT } from "@colyseus/auth";
-import type { MyRoomState} from './rooms/MyRoom.ts';
-import loaders from './loaders';
+//import type { MyRoomState} from './rooms/MyRoom.ts';
+//import loaders from './loaders';
 //import { createServer } from "http";
 import globalEmitter from './loaders/eventEmitter';
 import run from "./cron/run"
 import { RelayRoom } from "colyseus";
-var gameModel = require('./models/game.ts');
-var playerModel = require('./models/player.ts');
+const gameModel = require('./models/game.ts');
+const playerModel = require('./models/player.ts');
 /**
  * Import your Room files
  */
@@ -41,7 +41,7 @@ export default config({
     const roomNumber = new Map<number, string>([]);
 
     gameModel.getRooms().then((result: any) => {
-      result.forEach(element => {
+      result.forEach((element: any) => {
         console.log(element.nid + " " + element.title + '-' + padding(element.field_tiled_value, 3, 0));
         roomNumber.set(element.nid, element.title + '-' + padding(element.field_tiled_value, 3, 0));
       });
@@ -67,29 +67,10 @@ export default config({
     // Discord Embedded SDK: Retrieve user token when under Discord/Embed
     //
     app.post('/discord_token', async (req, res) => {
-      //
-      // TODO: remove this on production
-      //
-/*       if (req.body.code === "mock_code") {
-        const user = {
-          id: Math.random().toString(36).slice(2, 10),
-          username: `User ${Math.random().toString().slice(2, 10)}`,
-        }
-        res.send({ access_token: "mocked", token: await JWT.sign(user), user });
-        return;
-      } */
-
-
-
-
-
       try {
         //
         // Retrieve access token from Discord API
         //
-
-
-
         const response = await fetch(`https://discord.com/api/oauth2/token`, {
           method: 'POST',
           headers: {
@@ -103,17 +84,12 @@ export default config({
           }),
         });
 
-
-
-
-
         const { access_token } = await response.json();
 
         //
         // Retrieve user data from Discord API
         // https://discord.com/developers/docs/resources/user#user-object
         //
-
 
         const profile = await (await fetch(`https://discord.com/api/users/@me`, {
           method: "GET",
@@ -123,14 +99,8 @@ export default config({
           }
         })).json();
 
-
-
-        // TODO: store user profile into a database
-        const user = profile;
-
-         playerModel.checkNewPlayer(user).then((result: any) => {
-
-                });
+        // Load existing Drupal user by discord_id or create a new one if none exists
+        const user = await playerModel.getOrCreateDiscordUser(profile);
 
         res.send({
           access_token, // Discord Access Token
@@ -139,7 +109,24 @@ export default config({
         });
 
       } catch (e: any) {
+        console.log("discord_token error", e);
         res.status(400).send({ error: e.message });
+      }
+    });
+
+    app.post('/local_token', async (req, res) => {
+      if (req.body.playerId) {
+        try {
+          // Make sure this is a real user
+          const user = await playerModel.getDiscordPlayer(req.body.playerId);
+          if(user) {
+            res.send({ access_token: "mocked", token: await JWT.sign(user), user });
+            return;
+          }
+        } catch (e: any) {
+          console.log("local_token error", e);
+          res.status(400).send({ error: e.message });
+        }
       }
     });
 
@@ -176,7 +163,7 @@ export default config({
 
 
 
-function padding(n, p, c) {
+function padding(n: number, p: number, c: any) {
   var pad_char = typeof c !== 'undefined' ? c : '0';
   var pad = new Array(1 + p).join(pad_char);
   return (pad + n).slice(-pad.length);

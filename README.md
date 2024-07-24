@@ -23,48 +23,97 @@
 * [The Eclectic Meme Conspiracy Online - Game Scripts](https://docs.google.com/document/d/1rdpK02PXfvUjwQLJgLXHzOeSbtBHymMo8Wq35UMY42s/)
 * [The Eclectic Meme Conspiracy - Game Information](https://docs.google.com/spreadsheets/d/18frZlc8CwXpQ6V0slhlR1qcUyX5OijrPhJUCGY2S6hw/edit#gid=1469334051)
 
-### Steps to build a world from the engine.
+## Installation
 
 #### Drupal Setup
 * Install Drupal (Minimal Install)
-* Download required modules (Paragraphs, Flag, Profile, Registration Role)
+* Download required modules (Paragraphs, Flag, Profile, Registration Role, Rest API Auth)
 
-`composer require 'drupal/profile:^1.10' 'drupal/paragraphs:^1.17' 'drupal/flag:^4.0@beta' 'drupal/registration_role:^2.0'`
+`composer require 'drupal/profile:^1.10' 'drupal/paragraphs:^1.17' 'drupal/flag:^4.0@beta' 'drupal/registration_role:^2.0' 'drupal/rest_api_authentication:^2.0' 'drupal/file_field_replace:^3.0'`
 
 * Helpful Drupal configurations:
   * Administration =>Appearance => Claro => Install and set as default
   * Administration => Extend => Toolbar
 
-* Clone Jigs into modules/custom/jigs or
-* Install Drupal/Jigs
+* Clone Jigs4Discord into modules/custom/jigs
+* Enable the required modules before installing the JiGS module (saves execution time)
+  * The JiGS Dependencies module is included for convenience.
+* Install the JiGS module
 * Install the default content - https://github.com/Techbot/JiGS-demo-content
   * If you followed these instructions, all you need to do is turn on the module.
 * Clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets
+* Go to Configuration => JSON:API and accept all operations
+* Go to Configuration => API Authentication Configuration
+  * Enable Authentication
+  * Choose API Key Authentication
+  * Generate New API Key
+  * You will need to assign the Administrator role to the user you want to use for API access
+* For some hosting scenarios, you may need to configure your CORS settings on both Drupal main and the /assets folder.
+  * Configure /sites/default/default.services.yml
+  * Add an .htaccess to /assets
+
 
 #### Colyseus Setup
 * cd into modules/custom/jigs/server
 * `npm install`
 * copy src/services/db_SETUP.ts into src/services/db.ts and configure
 * Copy example.env to .env and configure
-* npm run start
+* Add your administrator username and the API key from the previous section
 
 #### Phaser Setup
 * cd into modules/custom/jigs/client
-* Copy example.env to .env and configure
+* Copy example.env.* to .env.* and configure
 * `npm install`
-* `npm run build`
-* Copy the css & js paths into modules/custom/jigs/jigs.libraries.yml and increment the version number
-* Run `npm run start`
-* In a new tab, run `npm tunnel`
-* Put the cloudflared URL into your Discord app's OAuth and URL Mappings
-* Test your new Discord app!
 
-#### Testing Drupal Setup
+## Testing
+Steps to do rapid development and testing without the need to build the client and bundle into Drupal for every code change.
+
+### Local Development
+* Add a fake discord_id to your user account in Drupal (i.e. 12345)
+* Set your client's .env.development Drupal URLs to /drupal
+* In server run `npm run start`
+* In client run `npm run start`
+* In your browser, open http://localhost:5173/?discord_id=12345
+* You should see the game running and the HUD populated with your user information
+* Click in and you should be able to run around on the map!
+
+### Discord Testing
+* In client run `npm run tunnel`
+* In your Discord configuration:
+  * URL Mappings: / = tunnel URL
+  * OAuth2: Redirects = tunnel URL
+* Run your Discord activity and you should be able to run around on the map!
+
+## Production
+Steps to bundle the client into Drupal and deploy the servers to a cloud provider.
+
+### Local Setup
+* Set your client's .env.production Drupal URLs to blank
+  * Optionally point assets URL at a CDN server 
+* In client run `NODE_ENV=production && npm run build`
+* Copy the css & js paths into modules/custom/jigs/jigs.libraries.yml and increment the version number
+* In server run `npm run start`
 * In Drupal, go to Administration => Configuration => Development => Performance and clear all caches
 * Go to the home page and verify that the game is running
-  * Note: You might need to configure your webserver to route wildcard hostnames through to your Drupal folder!
 
-#### World Setup
+### Tunnel
+* If you have necessary ports open (80,2567), you can just run:
+  * `cloudflared tunnel --url http://localhost`
+  * Server URL will be tunnel:2567
+  * Drupal URL will be tunnel (or tunnel:8080 or however you have Apache configured)
+* If you need to tunnel to servers individually you can run:
+  * In server run `npm run tunnel`
+  * For Drupal run `cloudflared tunnel --url http://localhost`
+* Note: You might need to configure your webserver to route wildcard hostnames through to your Drupal folder!
+
+### Discord
+* In your Discord configuration:
+  * OAuth2: Redirects = Server URL 
+  * URL Mappings:
+    * / = Drupal URL
+    * /api = Server URL
+
+## World Setup
 * Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling
 * Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)
 

@@ -4,12 +4,11 @@
 //////////////////////////////////////////////////////////////////////////////
 import { JWT } from "@colyseus/auth";
 import { Room, Client, ServerError } from "colyseus";
-const db = require("../services/db");
 import { InputData, MyRoomState, Player, PlayerMap, ZombieState } from "./GameState";
 
-var roomModel = require('../models/room.ts');
+// var roomModel = require('../models/room.ts');
 
-var p2 = require('p2');
+const p2 = require('p2');
 const fs = require('fs');
 import { P2player } from "./P2player";
 import { Mob } from "./Mobs";
@@ -95,7 +94,6 @@ export class PreRoom extends Room<MyRoomState> {
     } */
 
   static onAuth(token: string) {
-    console.log('Auth' + token)
     return JWT.verify(token);
 
   }
@@ -186,7 +184,12 @@ export class PreRoom extends Room<MyRoomState> {
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
         if (this.Mobs.mobClicked(this, input, player) == 1) {
-          this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
+          const mobResult = this.state.mobResult.get(input.mobClick);
+          if (mobResult) {
+            this.broadcast("zombie dead", mobResult.field_mob_name_value);
+          } else {
+            console.error(`Mob result for key ${input.mobClick} not found.`);
+          }
         }
         player.p2Player.update(input, player, velocity);
         player.tick = input.tick;
@@ -194,7 +197,7 @@ export class PreRoom extends Room<MyRoomState> {
     });
   }
 
-  skip(val) {
+  skip(val: any) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve('resolved');
@@ -207,25 +210,20 @@ export class PreRoom extends Room<MyRoomState> {
 
   /////////////////////////////////////////////////////////////////////////////////
   async onJoin(client: Client, options: any) {
-    console.log(client.sessionId, "joined pre room!");
-    console.log(options.playerId, "joined!");
-    console.log(options.profileId, "joined!");
-
-     const player = new Player();
+    const player = new Player();
+    player.channelId = options.channelId;
+    player.playerUuid = options.playerUuid;
     player.playerId = options.playerId;
-    player.profileId = options.profileId;
+    player.playerName = options.playerName;
 
-    player.username = client.auth?.username || "Guest";
+    // @TODO Why are these lines here?
+    player.p2Player = new P2player(player.playerUuid);
+    await player.p2Player.load(this.share, player);
+    //this.world.addBody(player.p2Player.Body);
 
-    player.p2Player = new P2player(player.username);
-
-
-    console.log(player.username);
     const playerMap = new PlayerMap();
     playerMap.profileId = options.profileId;
 
-   // await player.p2Player.load(player.username, this.share, player, client, this);
-  //  this.world.addBody(player.p2Player.Body);
     this.state.players.set(client.sessionId, player);
     this.state.playerMap.set(client.sessionId, playerMap)
   }
@@ -237,7 +235,7 @@ export class PreRoom extends Room<MyRoomState> {
 
   }
 
-  onStateChange(state) {
+  onStateChange(state: any) {
     console.log(this.roomId, "has new state:", state);
   }
 

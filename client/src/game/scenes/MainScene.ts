@@ -20,6 +20,7 @@ import type { MyRoomState, Player } from '../../utils/MyRoom.ts';
 //import { authenticate } from '../../utils/Auth.js';
 //import { PlayerObject } from '../../objects/PlayerObject.js';
 
+import AnimatedTiles from 'phaser-animated-tiles/dist/AnimatedTiles.min.js';
 import MyPlayer from "../entities/player.js";
 import OtherPlayer from "../entities/otherPlayer.js";
 import Messenger from "../entities/messenger.js";
@@ -33,6 +34,8 @@ import Bosses from "../entities/bosses.js";
 import Walls from "../entities/walls.js";
 import Folios from "../entities/folios.js";
 import Hydrater from '../../utils/Hydrater.js';
+
+const ASSETS_URL = import.meta.env.VITE_ASSETS_URL;
 
 export class MainScene extends Phaser.Scene {
   room: any;
@@ -115,10 +118,11 @@ export class MainScene extends Phaser.Scene {
     this.Loader = new Load;
     this.messenger = new Messenger;
     this.Loader.load(this);
-    this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
-    this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+    this.load.audio('walk', [ASSETS_URL + '/assets/audio/thud.ogg', ASSETS_URL + '/assets/audio/thud.mp3']);
+    this.load.image('nextPage', ASSETS_URL + '/assets/images/System/arrow-down-left.png');
     //this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-    this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+    //this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+    this.load.scenePlugin('AnimatedTiles', AnimatedTiles, 'animatedTiles', 'animatedTiles');
   }
 
   async create() {
@@ -127,18 +131,14 @@ export class MainScene extends Phaser.Scene {
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
     this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
-    const channelId = this.jigs.channelId;
-    this.jigs.room = await colyseusSDK.joinOrCreate<MyRoomState>(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0),
-      {
-        channelId: channelId
-      });
-
-    console.log("------------------room--------------------" + this.jigs.room);
-    // connection successful!
-    // connectionStatusText.destroy();
-
-    console.log("***** joined successfully *****************" + this.jigs.room);
-
+    const roomName = this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0);
+    const options = {
+      channelId: this.jigs.channelId,
+      playerUuid: this.jigs.playerUuid,
+      playerId: this.jigs.playerId,
+      playerName: this.jigs.playerName
+    };
+    this.jigs.room = await colyseusSDK.joinOrCreate<MyRoomState>(roomName, options);
     if (this.jigs.room == undefined) {
       console.log("undefined room ");
       this.scene.start('DeadScene');
@@ -149,11 +149,13 @@ export class MainScene extends Phaser.Scene {
     // this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.06 });
     //  this.soundtrack.play();
     this.messenger.initMessages(this);
-    this.jigs.room.state.players.onAdd((player: { username?: any; x: any; y: any; onChange: any; discordName?: any; direction?: any; }, sessionId: string | number) => {
-      var entity: any;
+    this.jigs.room.state.players.onAdd((player: any, sessionId: string | number) => {
+      let entity: any;
       // is current player
       if (sessionId === this.jigs.room.sessionId) {
-        this.jigs.playerId = player.username;
+        this.jigs.playerUuid = player.playerUuid;
+        this.jigs.playerId = player.playerId;
+        this.jigs.playerName = player.playerName;
         this.jigs.localPlayer = new MyPlayer(this, this.jigs.room, player);
         this.jigs.playerState = "alive";
         this.jigs.content = this.jigs.dialogueArray;
@@ -169,7 +171,6 @@ export class MainScene extends Phaser.Scene {
         this.jigs.localPlayer.add();
         this.playerEntities[sessionId] = entity;
       } else {
-
         const otherPlayer = new OtherPlayer(this, player);
         otherPlayer.add();
         this.playerEntities[sessionId] = otherPlayer;
@@ -193,7 +194,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   updatePlayer() {
-    jigsGet("states/myplayer?_wrapper_format=drupal_ajax&uid=" + this.jigs.uid)
+    jigsGet("states/myplayer?_wrapper_format=drupal_ajax&uid=" + this.jigs.playerId)
       .then((response) => {
         //this.hydratePlayer(response);
         this.hydrater.hydratePlayer(response);
@@ -220,12 +221,14 @@ export class MainScene extends Phaser.Scene {
       .setStyle({ color: "#ff0000" })
       .setPadding(4)
     try {
-      this.jigs.room = await this.client.joinOrCreate(room,
-        {
-          playerId: this.jigs.playerId,
-          profileId: this.jigs.profileId,
-        });
-      // connection successful!
+      const roomName = this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0);
+      const options = {
+        channelId: this.jigs.channelId,
+        playerUuid: this.jigs.playerUuid,
+        playerId: this.jigs.playerId,
+        playerName: this.jigs.playerName
+      };
+      this.jigs.room = await this.client.joinOrCreate(room, options);
       connectionStatusText.destroy();
     } catch (e) {
       // couldn't connect
