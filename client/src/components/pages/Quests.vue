@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 import { useJigsStore } from "../../stores/jigs.ts";
 import * as coreui from '@coreui/coreui'
 export default {
@@ -19,8 +19,7 @@ export default {
   },
   mounted() {
      this.jigs = useJigsStore();
-    axios
-      .get("/mymissions?_wrapper_format=drupal_ajax")
+    jigsGet("mymissions?_wrapper_format=drupal_ajax")
       .then((response) => {
         this.jigs.playerQuests = response.data[0].value["playerMissions"];
         console.log(this.jigs.playerQuests)

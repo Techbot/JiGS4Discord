@@ -1,6 +1,7 @@
 .vscode
+.DS_Store
+.env*
 
-/config/
 /vendor/
 
 # Assets and user uploads
@@ -11,6 +12,7 @@
 
 # mine
 tiled
+server/.env*
 server/lib
 server/reports
 server/arena.config.ts
@@ -25,7 +27,6 @@ client/.parcel-cache
 client/src/game/backend.ts
 client/src/assets/fonts/*
 
-node_modules
 LICENSE.md
 
 config_init
@@ -36,6 +37,3 @@ _phaser_server
 _phaser_client
 
 public/
-
-server/.env*
-

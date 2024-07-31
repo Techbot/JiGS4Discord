@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.missions.field_mission
+    - paragraphs.paragraphs_type.missions
+id: paragraph.missions.default
+targetEntityType: paragraph
+bundle: missions
+mode: default
+content:
+  field_mission:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

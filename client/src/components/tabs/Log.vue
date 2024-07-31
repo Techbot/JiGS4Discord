@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import {jigsGet} from '../../utils/JigsAPI.ts';
 export default {
   data() {
     return {
@@ -7,8 +7,7 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get('/mydata?_wrapper_format=drupal_ajax')
+    jigsGet('mydata?_wrapper_format=drupal_ajax')
       .then((response) => {
         this.posts = response.data[0].value
       })
@@ -17,10 +16,7 @@ export default {
     formSubmit(e) {
       e.preventDefault();
       let currentObj = this;
-      axios.get('/mydata?_wrapper_format=drupal_ajax', {
-        name: this.name,
-        description: this.description
-      })
+      jigsGet(`mydata?_wrapper_format=drupal_ajax&name=${this.name}&description=${this.description}`)
         .then(function (response) {
           currentObj.posts = response.data[0].value
         })

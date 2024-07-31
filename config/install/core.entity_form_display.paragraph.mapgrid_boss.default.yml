@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mapgrid_boss.field_boss
+    - field.field.paragraph.mapgrid_boss.field_x
+    - field.field.paragraph.mapgrid_boss.field_y
+    - paragraphs.paragraphs_type.mapgrid_boss
+id: paragraph.mapgrid_boss.default
+targetEntityType: paragraph
+bundle: mapgrid_boss
+mode: default
+content:
+  field_boss:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

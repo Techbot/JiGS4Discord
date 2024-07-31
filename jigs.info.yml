@@ -12,5 +12,8 @@ dependencies:
 - drupal:taxonomy
 - drupal:image
 - drupal:options
+- drupal:jsonapi
+- drupal:file_field_replace
+- rest_api_authentication:rest_api_authentication
 - flag:flag
 - registration_role:registration_role

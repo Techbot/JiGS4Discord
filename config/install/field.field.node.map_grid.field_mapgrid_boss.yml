@@ -1,0 +1,99 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mapgrid_boss
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.mapgrid_boss
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_mapgrid_boss
+field_name: field_mapgrid_boss
+entity_type: node
+bundle: map_grid
+label: 'MapGrid Boss'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      mapgrid_boss: mapgrid_boss
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 25
+        enabled: false
+      boss:
+        weight: 26
+        enabled: false
+      buildings:
+        weight: 27
+        enabled: false
+      components:
+        weight: 28
+        enabled: false
+      crystal:
+        weight: 29
+        enabled: false
+      cutscene:
+        weight: 30
+        enabled: false
+      dialog_line:
+        weight: 31
+        enabled: false
+      folio:
+        weight: 32
+        enabled: false
+      items:
+        weight: 33
+        enabled: false
+      mapgrid_boss:
+        weight: 34
+        enabled: true
+      mega_mob:
+        weight: 35
+        enabled: false
+      mission_doors:
+        weight: 36
+        enabled: false
+      mission_stage:
+        weight: 37
+        enabled: false
+      missions:
+        weight: 38
+        enabled: false
+      mobs:
+        weight: 39
+        enabled: false
+      modifier:
+        weight: 40
+        enabled: false
+      npc:
+        weight: 41
+        enabled: false
+      portal:
+        weight: 42
+        enabled: false
+      reward_item:
+        weight: 43
+        enabled: false
+      rewards:
+        weight: 44
+        enabled: false
+      skill:
+        weight: 45
+        enabled: false
+      switches:
+        weight: 46
+        enabled: false
+      walls:
+        weight: 47
+        enabled: false
+      weapon:
+        weight: 48
+        enabled: false
+field_type: entity_reference_revisions

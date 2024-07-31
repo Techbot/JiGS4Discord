@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.mission.body
+    - field.field.node.mission.field_choice_a
+    - field.field.node.mission.field_cutscene
+    - field.field.node.mission.field_dialog_mission_complete
+    - field.field.node.mission.field_doors
+    - field.field.node.mission.field_handler_dialog
+    - field.field.node.mission.field_level_boss
+    - field.field.node.mission.field_reward_item
+    - field.field.node.mission.field_switches
+    - node.type.mission
+  module:
+    - entity_reference_revisions
+    - text
+    - user
+id: node.mission.default
+targetEntityType: node
+bundle: mission
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_choice_a:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_cutscene:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_dialog_mission_complete:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_doors:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_handler_dialog:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_level_boss:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_reward_item:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_switches:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: horizontal
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  flag_mission_completed:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

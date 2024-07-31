@@ -1,0 +1,19 @@
+name: 'JiGS Dependencies'
+type: module
+description: 'Helper module to install all of the dependencies before installing the JiGs module. Helps with execution time so JiGS module can focus on content type creation and configuration.'
+package: JiGS
+core_version_requirement: '^9 || ^10'
+dependencies:
+- profile:profile
+- drupal:paragraphs
+- drupal:entity_reference_revisions
+- drupal:path
+- drupal:menu_ui
+- drupal:taxonomy
+- drupal:image
+- drupal:options
+- drupal:jsonapi
+- drupal:file_field_replace
+- rest_api_authentication:rest_api_authentication
+- flag:flag
+- registration_role:registration_role

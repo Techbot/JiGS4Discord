@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.missions.field_mission
+    - paragraphs.paragraphs_type.missions
+id: paragraph.missions.default
+targetEntityType: paragraph
+bundle: missions
+mode: default
+content:
+  field_mission:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  flag_mission_complete:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.profile.player
+    - field.field.profile.faction.field_faction
+    - profile.type.faction
+id: profile.faction.player
+targetEntityType: profile
+bundle: faction
+mode: player
+content:
+  field_faction:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

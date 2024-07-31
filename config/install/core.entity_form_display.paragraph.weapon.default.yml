@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.weapon.field_location
+    - field.field.paragraph.weapon.field_weapon
+    - paragraphs.paragraphs_type.weapon
+id: paragraph.weapon.default
+targetEntityType: paragraph
+bundle: weapon
+mode: default
+content:
+  field_location:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_weapon:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

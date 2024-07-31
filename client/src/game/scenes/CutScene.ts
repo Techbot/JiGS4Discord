@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs.js';
-import axios from "axios";
 
 const COLOR_PRIMARY = 0x04151F;
 const COLOR_LIGHT = 0x009999;

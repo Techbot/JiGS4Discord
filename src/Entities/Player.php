@@ -18,9 +18,9 @@ class Player
     public $flagging;
     public $missionsArrayOfOne;
 
-    function __construct()
+    function __construct($uid)
     {
-        $this->user           = \Drupal\user\Entity\User::load(1);
+        $this->user           = \Drupal\user\Entity\User::load($uid);
         $this->database       = \Drupal::database();
     }
 

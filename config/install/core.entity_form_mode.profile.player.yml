@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.player
+label: Player
+description: ''
+targetEntityType: profile
+cache: true

@@ -3,7 +3,7 @@
  */
 import Npc from "./npc.ts";
 import { useJigsStore } from '../../stores/jigs.ts';
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 
 export default class NPCs {
   jigs: any;
@@ -46,8 +46,7 @@ export default class NPCs {
   }
   onNPCDown(npc, self) {
     if (npc[5] == 1) {
-      axios
-        .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
+      jigsGet("mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
         .then((response) => {
           console.log("");
           self.scene.hydrateMission(response);

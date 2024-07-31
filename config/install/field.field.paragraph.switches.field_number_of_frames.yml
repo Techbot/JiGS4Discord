@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_number_of_frames
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_number_of_frames
+field_name: field_number_of_frames
+entity_type: paragraph
+bundle: switches
+label: 'Number of Frames'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

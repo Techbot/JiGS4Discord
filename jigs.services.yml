@@ -3,3 +3,9 @@ services:
     class: Drupal\jigs\EventSubscriber\FlagSubscriber
     tags:
       - { name: event_subscriber }
+  jigs.xframe_subscriber:
+    class: Drupal\jigs\EventSubscriber\XframeSubscriber
+    arguments: [ '@config.factory' ]
+    tags:
+      - { name: event_subscriber }
+

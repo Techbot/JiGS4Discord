@@ -1,0 +1,79 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mission_doors.field_destination
+    - field.field.paragraph.mission_doors.field_destination_x
+    - field.field.paragraph.mission_doors.field_destination_y
+    - field.field.paragraph.mission_doors.field_map_grid
+    - field.field.paragraph.mission_doors.field_tiled
+    - field.field.paragraph.mission_doors.field_x
+    - field.field.paragraph.mission_doors.field_y
+    - paragraphs.paragraphs_type.mission_doors
+id: paragraph.mission_doors.default
+targetEntityType: paragraph
+bundle: mission_doors
+mode: default
+content:
+  field_destination:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_destination_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_destination_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_map_grid:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_tiled:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

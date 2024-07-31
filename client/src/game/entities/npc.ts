@@ -2,7 +2,7 @@
  * -------NPC ---------
  */
 import Phaser from "phaser";
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 
 export default class Npc extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
@@ -25,8 +25,7 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
     onNPCDown(npc, scene) {
         console.log("who" + npc);
         if (npc[5] == 1) {
-            axios
-                .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
+            jigsGet("mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
                 .then((response) => {
                     console.log("why ");
 

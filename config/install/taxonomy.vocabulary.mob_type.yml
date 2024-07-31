@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Mob Type'
+vid: mob_type
+description: ''
+weight: 0

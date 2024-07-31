@@ -12,15 +12,14 @@ export default class Hydrator {
   }
 
   hydratePlayer(response) {
-    console.log("***************** mapgrid " + response.data[0].value["player"]["mapgrid"])
     this.jigs.playerStats = response.data[0].value["player"];
     this.jigs.health = response.data[0].value["health"];
     this.jigs.energy = response.data[0].value["energy"];
-    //this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
+    this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
     //this.profileId = parseInt(response.data[0].value["player"]["profileId"]);
-    //this.playerName = response.data[0].value["player"]["name"];
-    //this.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
-    this.jigs.userMapGrid = response.data[0].value["player"]["mapgrid"];
+    this.jigs.playerName = response.data[0].value["player"]["name"];
+    this.jigs.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
+    this.jigs.userMapGrid = response.data[0].value["player"]["userMG"];
     //this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
   }
 

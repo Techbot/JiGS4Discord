@@ -1,0 +1,14 @@
+langcode: en
+status: true
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Soundtrack
+type: soundtrack
+description: 'Music to murder by'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

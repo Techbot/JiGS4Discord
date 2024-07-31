@@ -1,7 +1,7 @@
 /**
  * ------- Mission Dialog ---------
  */
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 //import WebFont from '../../assets/WebFont.ts'
 
 export default class Mission {
@@ -127,8 +127,7 @@ export default class Mission {
 
 function sendPositive(data) {
   console.log("this is me sending a value: " + data.value);
-  axios
-    .get("/addmission?_wrapper_format=drupal_ajax&id=" + data.value)
+  jigsGet("addmission?_wrapper_format=drupal_ajax&id=" + data.value)
     .then((response) => {
       console.log("this is me receiving a value: " + response);
     });

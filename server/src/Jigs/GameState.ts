@@ -18,12 +18,14 @@ export class Vec2 extends Schema {
 
 export class Player extends Schema {
 
-
-  @type("string") username: string;
+  @type("number") playerId: number;
+  @type("string") playerUuid: string;
+  @type("number") profileId: number;
+  @type("string") profileUuid: string;
+  @type("string") playerName: string;
   @type("number") heroType: number; // sprite to use (1-12)
   @type(Vec2) position = new Vec2();
-
-
+  @type("string") channelId: string;
   @type("number") x: number;
   @type("number") y: number;
   @type("number") tick: number;
@@ -37,13 +39,9 @@ export class Player extends Schema {
   id: string;
   portal: number;
   Body: any;
-
-  playerId: number;
-  profileId: number;
   lastX: number;
   lastY: number;
   p2Player: any;
-  discordName: string;
 }
 
 export class ZombieState extends Schema {

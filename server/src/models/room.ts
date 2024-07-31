@@ -10,18 +10,19 @@ var con = mysql.createPool({
 });
 
 
-function getRoom(id) {
+function getRoom(id: number) {
   return new Promise(function (resolve, reject) {
+    // @TODO Removed node__field_mission_accepted for now
+    // node__field_mission_accepted.field_mission_accepted_target_id
     con.query(`SELECT node__field_map_width.field_map_width_value,
-        node__field_map_height.field_map_height_value,
-        node__field_mission_accepted.field_mission_accepted_target_id
+        node__field_map_height.field_map_height_value
+
         FROM node__field_map_width
         LEFT JOIN node__field_map_height
         ON node__field_map_width.entity_id = node__field_map_height.entity_id
-        LEFT JOIN node__field_mission_accepted
-        ON node__field_mission_accepted.entity_id = node__field_map_width.entity_id
-        WHERE node__field_map_width.entity_id = ` + id,
-      function (err, result) {
+
+        WHERE node__field_map_width.entity_id = ${id}`,
+      function (err: any, result: any) {
         if (err) throw err;
         resolve(result);
       }
@@ -29,7 +30,7 @@ function getRoom(id) {
   })
 }
 
-function getPortals(NodeNumber) {
+function getPortals(NodeNumber: number) {
   return new Promise(function (resolve, reject) {
     con.query(
       `SELECT node__field_portals.field_portals_target_id,
@@ -52,8 +53,8 @@ function getPortals(NodeNumber) {
       On node__field_portals.field_portals_target_id = paragraph__field_x.entity_id
       Left Join paragraph__field_y
       On node__field_portals.field_portals_target_id = paragraph__field_y.entity_id
-      where node__field_portals.entity_id = ` + NodeNumber,
-      function (err, result) {
+      where node__field_portals.entity_id = ${NodeNumber}`,
+      function (err: any, result: any) {
         if (err) throw err;
         resolve(result);
       }
@@ -61,7 +62,7 @@ function getPortals(NodeNumber) {
   })
 }
 
-function getSwitches(NodeNumber) {
+function getSwitches(NodeNumber: number) {
   return new Promise(function (resolve, reject) {
     con.query(
       `SELECT node__field_portals.field_switches_target_id,
@@ -76,7 +77,7 @@ function getSwitches(NodeNumber) {
       Left Join paragraph__field_y
       On node__field_portals.field_portals_target_id = paragraph__field_y.entity_id
       where node__field_portals.entity_id = ` + NodeNumber,
-      function (err, result) {
+      function (err: any, result: any) {
         if (err) throw err;
         resolve(result);
       }
@@ -84,7 +85,7 @@ function getSwitches(NodeNumber) {
   })
 }
 
-function getWalls(NodeNumber) {
+function getWalls(NodeNumber: number) {
   return new Promise(function (resolve, reject) {
     con.query(
       `SELECT node__field_walls.entity_id,
@@ -108,7 +109,7 @@ function getWalls(NodeNumber) {
       On node__field_walls.field_walls_target_id = paragraph__field_height.entity_id
 
       WHERE node__field_walls.entity_id = ` + NodeNumber,
-      function (err, result) {
+      function (err: any, result: any) {
         if (err) throw err;
         resolve(result);
       }
@@ -116,7 +117,7 @@ function getWalls(NodeNumber) {
   })
 }
 
-function getNpcs(NodeNumber) {
+function getNpcs(NodeNumber: number) {
   return new Promise(function (resolve, reject) {
     con.query(
       `SELECT
@@ -134,7 +135,7 @@ function getNpcs(NodeNumber) {
      Left Join paragraph__field_y
      On paragraph__field_y.entity_id = paragraph__field_name.entity_id
      WHERE node__field_npc.entity_id = ` + NodeNumber,
-      function (err, result) {
+      function (err: any, result: any) {
         if (err) throw err;
         resolve(result);
       }
@@ -142,7 +143,7 @@ function getNpcs(NodeNumber) {
   })
 };
 
-function getMobs(NodeNumber) {
+function getMobs(NodeNumber: number) {
   return new Promise(function (resolve, reject) {
     con.query(`SELECT node__field_mobs.field_mobs_target_id,
        paragraph__field_mob_name.field_mob_name_value,
@@ -156,7 +157,7 @@ function getMobs(NodeNumber) {
        Left Join paragraph__field_y
        On paragraph__field_y.entity_id = node__field_mobs.field_mobs_target_id
        WHERE node__field_mobs.entity_id =
-        ` + NodeNumber, function (error, results) {
+        ` + NodeNumber, function (error: any, results: any) {
       if (error) throw error;
       console.log('The NodeNumber is: ', NodeNumber);
       console.log('The zombie solution is: ', results);
@@ -167,10 +168,13 @@ function getMobs(NodeNumber) {
 
 
 
-function getBosses(NodeNumber) {
+function getBosses(NodeNumber: number) {
 
   console.log('get bosses');
 
+  // @TODO paragraph__field_boss still doesn't exist?????
+
+  /*
   return new Promise(function (resolve, reject) {
     con.query(`SELECT paragraph__field_boss.entity_id,
        paragraph__field_boss.field_boss_target_id,
@@ -193,16 +197,17 @@ function getBosses(NodeNumber) {
 
 
        WHERE node__field_mapgrid_boss.entity_id =
-        ` + NodeNumber, function (error, results) {
+        ` + NodeNumber, function (error: any, results: any) {
       if (error) throw error;
       console.log('The NodeNumber is: ', NodeNumber);
       console.log('The monster solution is: ', results);
       resolve(results);
     });
   })
+   */
 }
 
-function getRewards(NodeNumber) {
+function getRewards(NodeNumber: number) {
   return new Promise(function (resolve, reject) {
 
     con.query(
@@ -220,7 +225,7 @@ function getRewards(NodeNumber) {
      ON paragraph__field_ref.entity_id = node__field_rewards.field_rewards_target_id
 
      WHERE node__field_rewards.entity_id = ` + NodeNumber,
-      function (err, result) {
+      function (err: any, result: any) {
         if (err) throw err;
         resolve(result);
       }
@@ -231,7 +236,7 @@ function getRewards(NodeNumber) {
 function updateBanks() {
   con.query(
     `UPDATE profile__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1`,
-    function (err, result, fields) {
+    function (err: any, result: any, fields: any) {
       if (err) throw err;
       return true;
     }
@@ -243,7 +248,7 @@ function updateBanks() {
 function updateDiscordBanks() {
   con.query(
     `UPDATE players SET credits = credits + 1 WHERE 1 = 1`,
-    function (err, result, fields) {
+    function (err: any, result: any, fields: any) {
       if (err) throw err;
       return true;
     }

@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topaz_defence
+    - node.type.level_boss
+id: node.level_boss.field_topaz_defence
+field_name: field_topaz_defence
+entity_type: node
+bundle: level_boss
+label: 'Topaz defence'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

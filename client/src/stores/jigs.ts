@@ -1,20 +1,20 @@
 // stores/counter.js
 import { defineStore } from "pinia";
-import axios from "axios";
+import {jigsGet} from '../utils/JigsAPI.ts';
 
 export const useJigsStore = defineStore("jigs", {
   state: () => ({
+    channelId: "1",
+
     room: {},
 
     todos: [],
 
-    playerName: "Blank",
-
-    discordName: "Blank",
-
-    playerId: 0,
-
-    profileId: 0,
+    playerName: "Guest",
+    playerUuid: "",       // uuid for user in drupal db
+    playerId: 0,          // internal uid for user in drupal db
+    profileUuid: "",      // uuid for profile node in drupal db
+    profileId: 0,         // internal nid for profile node in drupal db
 
     debug: 0,
 
@@ -162,8 +162,7 @@ Will you find my Balls?`,
   actions: {
     // any amount of arguments, return a promise or not
     myInventory() {
-      axios
-        .get("/myinventory?_wrapper_format=drupal_ajax")
+      jigsGet("myinventory?_wrapper_format=drupal_ajax")
         .then((response) => {
           this.divideInventory(response);
         });
@@ -185,8 +184,7 @@ Will you find my Balls?`,
       }
     },
     /*   hydrate(incMob) {
-        axios
-          .get("states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.userMapGrid + "&discordName=" + this.discordName)
+        jigsGet("states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.userMapGrid + "&discordName=" + this.discordName)
           .then((response) => {
             //this.playerStats = response.data[0].value["player"];
             //this.playerId = parseInt(response.data[0].value["player"]["id"]);
@@ -230,8 +228,7 @@ Will you find my Balls?`,
           })
       },
       hydratePlayer(incMob) {
-        axios
-          .get("states/myplayer?_wrapper_format=drupal_ajax&discordName=" + this.discordName)
+        jigsGet("states/myplayer?_wrapper_format=drupal_ajax&discordName=" + this.discordName)
           .then((response) => {
          //   this.playerStats = response.data[0].value["player"];
 

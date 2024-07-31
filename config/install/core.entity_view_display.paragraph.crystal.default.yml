@@ -1,0 +1,114 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.crystal.field_amethyst
+    - field.field.paragraph.crystal.field_emerald
+    - field.field.paragraph.crystal.field_empty
+    - field.field.paragraph.crystal.field_full
+    - field.field.paragraph.crystal.field_ruby
+    - field.field.paragraph.crystal.field_sapphire
+    - field.field.paragraph.crystal.field_switch_type
+    - field.field.paragraph.crystal.field_topaz
+    - field.field.paragraph.crystal.field_x
+    - field.field.paragraph.crystal.field_y
+    - paragraphs.paragraphs_type.crystal
+id: paragraph.crystal.default
+targetEntityType: paragraph
+bundle: crystal
+mode: default
+content:
+  field_amethyst:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_emerald:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_empty:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_full:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_ruby:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_sapphire:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_switch_type:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_topaz:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  flag_crystal:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+hidden: {  }

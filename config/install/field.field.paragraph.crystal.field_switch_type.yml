@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_switch_type
+    - paragraphs.paragraphs_type.crystal
+id: paragraph.crystal.field_switch_type
+field_name: field_switch_type
+entity_type: paragraph
+bundle: crystal
+label: 'Switch type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

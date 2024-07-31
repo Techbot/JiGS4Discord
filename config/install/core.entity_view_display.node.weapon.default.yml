@@ -1,0 +1,70 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.weapon.body
+    - field.field.node.weapon.field_ammo_type
+    - field.field.node.weapon.field_magazine
+    - field.field.node.weapon.field_modifiers
+    - field.field.node.weapon.field_weapon_image
+    - node.type.weapon
+  module:
+    - entity_reference_revisions
+    - image
+    - text
+    - user
+id: node.weapon.default
+targetEntityType: node
+bundle: weapon
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_ammo_type:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_magazine:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_modifiers:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_weapon_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

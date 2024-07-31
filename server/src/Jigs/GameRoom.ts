@@ -103,12 +103,12 @@ export class GameRoom extends Room<MyRoomState> {
   }
 
 
-  static checkAccess(client, options, playerMap) {
+  static checkAccess(client: any, options: any, playerMap: any) {
     if (playerMap.size == 0) {
       console.log('no people');
       return true
     } else {
-      playerMap.forEach((value, key) => {
+      playerMap.forEach((value: any, key: any) => {
         console.log("value" + value.profileId);
 
         if (value == options.profile_id) {
@@ -131,13 +131,14 @@ export class GameRoom extends Room<MyRoomState> {
     this.setState(new MyRoomState());
 
     await this.Mobs.load(this, options.nodeNumber, this.share);
-    await this.Bosses.load(this, options.nodeNumber, this.share);
+    // @TODO Figure out why loading bosses is still causing problems
+    //await this.Bosses.load(this, options.nodeNumber, this.share);
     await this.Portals.load(this.world, options.nodeNumber, this.share);
     //await this.Switches.load(this.world, options.nodeNumber, this.share);
     await this.Walls.load(this.world, options.nodeNumber, this.share);
     await this.Rewards.load(this.world, options.nodeNumber, this.share);
     await this.Npcs.load(this.world, options.nodeNumber, this.share);
-    //await this.Layers.load(options.nodeName, this.share);
+    await this.Layers.load(options.nodeName, this.share);
     await this.Collisions.add(this);
 
     await roomModel.getRoom(options.nodeNumber).then((result: any) => {
@@ -146,7 +147,7 @@ export class GameRoom extends Room<MyRoomState> {
       this.state.missionAccepted = result[0].field_mission_accepted_target_id;
       console.log('-----MA---------' + this.state.missionAccepted);
 
-    }).catch(function (err) {
+    }).catch(function (err: any) {
       console.log('room error' + err)
     });
 
@@ -218,7 +219,12 @@ export class GameRoom extends Room<MyRoomState> {
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
         if (this.Mobs.mobClicked(this, input, player) == 1) {
-          this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
+          const mobResult = this.state.mobResult.get(input.mobClick);
+          if (mobResult) {
+            this.broadcast("zombie dead", mobResult.field_mob_name_value);
+          } else {
+            console.error(`Mob result for key ${input.mobClick} not found.`);
+          }
         }
         player.p2Player.update(input, player, velocity);
         player.tick = input.tick;
@@ -226,7 +232,7 @@ export class GameRoom extends Room<MyRoomState> {
     });
   }
 
-  skip(val) {
+  skip(val: any) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve('resolved');
@@ -239,37 +245,22 @@ export class GameRoom extends Room<MyRoomState> {
 
   /////////////////////////////////////////////////////////////////////////////////
   async onJoin(client: Client, options: any) {
-
-    console.log(client.sessionId, "******* joined Main Room!");
-  //  console.log(options.playerId, "joined!");
- //   console.log(options.profileId, "joined!");
-
-
-
-
- const player = new Player();
+    const player = new Player();
+    player.channelId = options.channelId;
+    player.playerUuid = options.playerUuid;
     player.playerId = options.playerId;
-    player.profileId = options.profileId;
+    player.playerName = options.playerName;
+    player.p2Player = new P2player(player.playerUuid);
+    await player.p2Player.load(this.share, player);
 
-    player.username = client.auth?.username || "Guest";
-
-    player.p2Player = new P2player(player.username);
-
-
-    console.log(player.username);
     const playerMap = new PlayerMap();
     playerMap.profileId = options.profileId;
 
-    await player.p2Player.load(player.username, this.share, player, client, this);
     this.world.addBody(player.p2Player.Body);
     this.state.players.set(client.sessionId, player);
     this.state.playerMap.set(client.sessionId, playerMap)
-
-
-
-
-
   }
+
   ////////////////////////////////////////////////////////////////////////////////
   onLeave(client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
@@ -278,7 +269,7 @@ export class GameRoom extends Room<MyRoomState> {
 
   }
 
-  onStateChange(state) {
+  onStateChange(state: any) {
     console.log(this.roomId, "has new state:", state);
   }
 

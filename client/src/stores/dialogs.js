@@ -1,6 +1,6 @@
 // stores/counter.js
 import { defineStore } from "pinia";
-import axios from "axios";
+import {jigsGet} from '../../utils/JigsAPI.ts';
 
 export const useDialogStore = defineStore("dialogs", {
   state: () => ({
@@ -21,8 +21,7 @@ Will you find my Balls?`,
   },
   actions: {
     hydrate() {
-      axios
-        .get("/mymission?_wrapper_format=drupal_ajax")
+      jigsGet("/mymission?_wrapper_format=drupal_ajax")
         .then((response) => {
           this.title = response.data[0].value["dialogTitle"];
           this.content = parseInt(response.data[0].value["dialogContent"]);
